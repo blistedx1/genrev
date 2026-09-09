@@ -72,10 +72,14 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Connect to DB and start server
+// Connect to DB and start server if run directly
 connectDB().then(() => {
   ensureInitialData();
-  app.listen(PORT, () => {
-    console.log(`[Genrev Interio API] Server running on http://localhost:${PORT}`);
-  });
+  if (process.env.VERCEL !== '1' && !process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    app.listen(PORT, () => {
+      console.log(`[Genrev Interio API] Server running on http://localhost:${PORT}`);
+    });
+  }
 });
+
+module.exports = app;
