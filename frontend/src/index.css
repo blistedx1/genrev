@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --gold: #C5A880;
+    --gold-light: #DFC49F;
+    --gold-dark: #A37D52;
+    --dark-bg: #111215;
+    --card-bg: #18191E;
+    --border-dim: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    background-color: #111215;
+    color: #E2E1DC;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    border: none;
+  }
+
+  /* Editorial Fonts */
+  .font-editorial {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .font-display {
+    font-family: 'Cinzel', serif;
+  }
+
+  .font-mono-num {
+    font-family: 'Space Grotesk', monospace;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111215;
+}
+::-webkit-scrollbar-thumb {
+  background: #2A2C33;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A880;
+}
+
+/* Watermark typography as seen in go.arch screenshot */
+.watermark-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.025);
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
+}
+
+/* Subtle Architectural Grid Lines */
+.arch-grid {
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Metallic Gold Shimmer */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #F5E5C9 0%, #C5A880 50%, #8E6A3E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #C5A880 0%, #B28E61 100%);
+}
+
+.gold-border-glow:hover {
+  box-shadow: 0 0 25px rgba(197, 168, 128, 0.2);
+  border-color: rgba(197, 168, 128, 0.5);
+}
+
+/* Vertical Text Class */
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Custom Smooth Accordion Transition */
+.accordion-col {
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}

@@ -1,0 +1,173 @@
+const seedProjects = [
+  {
+    title: "The Glass Pavilion Villa",
+    subtitle: "Pan-Asian Luxury Estate",
+    category: "Residential",
+    description: "A seamless synthesis of poured architectural concrete, floor-to-ceiling acoustic glass, and warm teak wood cantilevered over a serene water courtyard.",
+    detailedText: "Conceived as an inhabitable sculpture, the Glass Pavilion dissolves the boundary between curated landscape and interior tranquility. Custom brass fixtures, concealed ambient cove lighting, and imported Italian travertine define each living zone with understated grandeur.",
+    images: [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85"
+    ],
+    location: "Alibaug Coastline",
+    year: 2025,
+    area: "8,500 sq.ft",
+    featured: true,
+    stats: {
+      duration: "16 Months",
+      style: "Warm Modernism",
+      clientType: "Private Family Office"
+    }
+  },
+  {
+    title: "Concert Hall & Symphony Hub",
+    subtitle: "Acoustic Parametric Architecture",
+    category: "Architecture",
+    description: "Concert Hall is the architecture of a new generation, an amphitheater of sculptural acoustic ribbons harmonizing space, light, and sound.",
+    detailedText: "Inspired by wave interference patterns, the facade combines double-curved fluted glass with micro-perforated acoustic panels. Every angle responds dynamically to natural daylight, transitioning from sheer translucency at noon to a glowing lantern at dusk.",
+    images: [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1600&q=85"
+    ],
+    location: "Bandra Kurla Complex, Mumbai",
+    year: 2024,
+    area: "34,000 sq.ft",
+    featured: true,
+    stats: {
+      duration: "24 Months",
+      style: "Parametric Fluidity",
+      clientType: "Cultural Foundation"
+    }
+  },
+  {
+    title: "Aurelia Boutique Hotel",
+    subtitle: "High-End Hospitality & Club",
+    category: "Hospitality",
+    description: "An urban sanctuary combining bespoke millwork, bronze patinas, and velvet textures to evoke timeless mid-century European salon luxury.",
+    detailedText: "Featuring 48 curated suites, a subterranean wine library, and a rooftop observatory garden. Every room features tailored furniture fabricated by Genrev's master craftsmen with hand-brushed brass detailing.",
+    images: [
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=85"
+    ],
+    location: "Mayfair District",
+    year: 2025,
+    area: "22,000 sq.ft",
+    featured: true,
+    stats: {
+      duration: "18 Months",
+      style: "Bespoke Hospitality",
+      clientType: "Hospitality Group"
+    }
+  },
+  {
+    title: "Skyline Duplex Penthouse",
+    subtitle: "Minimalist High-Rise Residence",
+    category: "Residential",
+    description: "A serene aerie overlooking the city skyline, wrapped in Statuario marble, fluted walnut walls, and minimalist monolithic islands.",
+    detailedText: "Engineered with smart atmospheric controls, hidden storage architecture, and an open double-height gallery staircase. Light washes across continuous micro-cement floors, establishing an uninterrupted sense of calm.",
+    images: [
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1600&q=85"
+    ],
+    location: "Worli Sea Face, Mumbai",
+    year: 2026,
+    area: "6,200 sq.ft",
+    featured: true,
+    stats: {
+      duration: "11 Months",
+      style: "Monolithic Luxury",
+      clientType: "Tech Entrepreneur"
+    }
+  },
+  {
+    title: "Nexus Innovation Headquarters",
+    subtitle: "Biophilic Corporate Architecture",
+    category: "Commercial",
+    description: "Next-generation collaborative workspace engineered with acoustic timber baffles, indoor botanical atriums, and ergonomic focus zones.",
+    detailedText: "Designed to foster spontaneous innovation and human well-being. Includes adaptive lighting that tracks circadian rhythms and modular glass pods for quiet strategic thinking.",
+    images: [
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=1600&q=85"
+    ],
+    location: "Cyber City, Gurugram",
+    year: 2025,
+    area: "45,000 sq.ft",
+    featured: false,
+    stats: {
+      duration: "20 Months",
+      style: "Biophilic Tech",
+      clientType: "Global Enterprise"
+    }
+  },
+  {
+    title: "The Sculptor's Atelier",
+    subtitle: "Turnkey Art & Living Space",
+    category: "Turnkey Interiors",
+    description: "A brutalist-inspired loft with exposed aggregate walls, raw blackened steel partitions, and custom monolithic oak credenzas.",
+    detailedText: "Complete turnkey execution from civil alterations and HVAC concealment to procurement of rare artisanal stoneware and custom lighting fixtures.",
+    images: [
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1600&q=85",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=85"
+    ],
+    location: "Kala Ghoda Heritage Zone",
+    year: 2024,
+    area: "3,800 sq.ft",
+    featured: false,
+    stats: {
+      duration: "9 Months",
+      style: "Industrial Poetics",
+      clientType: "Fine Artist"
+    }
+  }
+];
+
+const seedTestimonials = [
+  {
+    clientName: "Vikram Singhania",
+    role: "Managing Director",
+    company: "Singhania Capital",
+    quote: "Genrev Interio delivered far beyond what we envisioned for our sea-facing duplex. Their obsessive attention to joint details, lighting warmth, and material transitions was astonishing.",
+    projectType: "Luxury Residence",
+    rating: 5,
+    isActive: true
+  },
+  {
+    clientName: "Elena Rostova",
+    role: "Creative Director",
+    company: "Aurelia Hospitality Group",
+    quote: "Working with Genrev Interio felt like co-creating art. They honored our brand's European heritage while engineering an effortless, functional guest journey.",
+    projectType: "Hospitality & Suites",
+    rating: 5,
+    isActive: true
+  },
+  {
+    clientName: "Arjun & Radhika Mehra",
+    role: "Founders",
+    company: "Studio Apex",
+    quote: "The turnkey execution gave us zero sleepless nights. From civil work to the last custom brass handle, the craftsmanship is genuinely world-class.",
+    projectType: "Turnkey Penthouse",
+    rating: 5,
+    isActive: true
+  }
+];
+
+const seedClients = [
+  { name: "JOHNSON BANK", category: "Financial Architecture" },
+  { name: "METROPOL", category: "Hospitality & Developments" },
+  { name: "LUMINA LIVING", category: "Luxury Estates" },
+  { name: "APEX HORIZON", category: "Commercial Towers" },
+  { name: "VERITAS ARTISAN", category: "Bespoke Millwork" },
+  { name: "NEXUS GROUP", category: "Global Enterprise" }
+];
+
+module.exports = {
+  seedProjects,
+  seedTestimonials,
+  seedClients
+};
