@@ -18,6 +18,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Sensitive Credentials & Keys (Never commit to public repo)
+CREDENTIALS.md
+*credentials*
+*.key
+*.pem
+
 # System & Editor
 .DS_Store
 Thumbs.db
