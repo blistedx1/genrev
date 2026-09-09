@@ -9,6 +9,7 @@ import ProjectsAccordion from './components/ProjectsAccordion';
 import ProjectGrid from './components/ProjectGrid';
 import ThreeStudioViewer from './components/ThreeStudioViewer';
 import StatsSection from './components/StatsSection';
+import InstagramFeedSection from './components/InstagramFeedSection';
 import ClientsAndReviews from './components/ClientsAndReviews';
 import ContactSection from './components/ContactSection';
 import ProjectModal from './components/ProjectModal';
@@ -17,7 +18,7 @@ import AdminPage from './pages/AdminPage';
 
 function MainLayout() {
   return (
-    <div className="relative min-h-screen bg-[#111215] text-[#E2E1DC] overflow-x-hidden selection:bg-[#C5A880]/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#111215] text-[#E2E1DC] selection:bg-[#C5A880]/30 selection:text-white overflow-x-hidden">
       {/* Fixed Left Vertical Rail matching go.arch reference image */}
       <LeftRail totalSlides={4} />
 
@@ -32,7 +33,7 @@ function MainLayout() {
         <AboutSection />
 
         {/* 3. Our Projects Section */}
-        <section id="projects" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-[#111215] overflow-hidden">
+        <section id="projects" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 overflow-hidden bg-[#111215]">
           {/* Background Watermark matching go.arch screenshot */}
           <div className="absolute top-12 left-16 watermark-text text-8xl md:text-[14rem] select-none opacity-20">
             Projects
@@ -41,7 +42,7 @@ function MainLayout() {
           <div className="relative max-w-7xl mx-auto z-10">
             {/* Section Header */}
             <div className="flex flex-col items-center justify-center text-center mb-16">
-              <span className="text-xs uppercase tracking-[0.35em] text-white font-mono-num font-semibold mb-2">
+              <span className="text-xs uppercase tracking-[0.35em] font-mono-num font-semibold mb-2 text-white">
                 OUR <span className="text-[#C5A880]">PROJECTS</span>
               </span>
               <span className="w-12 h-[2px] bg-[#C5A880]"></span>
@@ -61,7 +62,10 @@ function MainLayout() {
         {/* 5. Stats & Milestone Section with textured giant number */}
         <StatsSection />
 
-        {/* 6. Clients & Testimonials Showcase */}
+        {/* 6. Instagram & Social Feed Showcase */}
+        <InstagramFeedSection />
+
+        {/* 7. Clients & Testimonials Showcase */}
         <ClientsAndReviews />
 
         {/* 7. Get in Touch Contact Section */}

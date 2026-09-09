@@ -62,6 +62,20 @@ app.use('/api/contacts', contactsRouter);
 app.use('/api/contact', contactsRouter); // Allow POST /api/contact as requested
 app.use('/api/clients', clientsRouter);
 
+// Admin Authentication Route
+app.post('/api/admin/login', (req, res) => {
+  const { userId, passcode } = req.body;
+  if (userId === 'admin@gen' && passcode === 'interio@gen') {
+    return res.json({ 
+      success: true, 
+      message: 'Authentication successful', 
+      user: { id: 'admin@gen', role: 'Super Administrator' },
+      token: 'genrev_auth_' + Date.now() 
+    });
+  }
+  return res.status(401).json({ success: false, error: 'Invalid User ID or Passcode' });
+});
+
 // Health check & branding info
 app.get('/api/health', (req, res) => {
   res.json({

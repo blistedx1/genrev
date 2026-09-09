@@ -8,41 +8,37 @@ export default function ClientsAndReviews() {
 
   // Fallback client logos if empty
   const clientList = clients && clients.length > 0 ? clients : [
-    { name: "JOHNSON BANK", category: "Private Wealth" },
-    { name: "METROPOL", category: "Hospitality" },
-    { name: "LUMINA LIVING", category: "Luxury Estates" },
-    { name: "APEX HORIZON", category: "Commercial" },
-    { name: "VERITAS ARTISAN", category: "Bespoke Millwork" },
-    { name: "NEXUS GROUP", category: "Global Enterprise" },
-    { name: "AURELIA CLUBS", category: "Hospitality" },
-    { name: "SOLARIS TOWERS", category: "Residential" },
-    { name: "VANGUARD STUDIOS", category: "Creative Space" },
-    { name: "CREST CAPITAL", category: "Headquarters" }
+    { name: "GAUR SONS", category: "Luxury Residences" },
+    { name: "JAYPEE GREENS", category: "Golf Living Estates" },
+    { name: "DLF ATELIER", category: "Commercial Workspaces" },
+    { name: "MAHAGUN", category: "Modern Penthouses" },
+    { name: "GULSHAN DYNASTY", category: "High-End Interiors" },
+    { name: "ACE GROUP", category: "Turnkey Architecture" }
   ];
 
   const reviewList = testimonials && testimonials.length > 0 ? testimonials : [
     {
-      clientName: "Vikram Singhania",
-      role: "Managing Director",
-      company: "Singhania Capital",
-      quote: "Genrev Interio delivered far beyond what we envisioned for our sea-facing duplex. Their obsessive attention to joint details, lighting warmth, and material transitions was astonishing.",
-      projectType: "Luxury Residence",
-      rating: 5
-    },
-    {
-      clientName: "Elena Rostova",
-      role: "Creative Director",
-      company: "Aurelia Hospitality Group",
-      quote: "Working with Genrev Interio felt like co-creating art. They honored our brand's European heritage while engineering an effortless, functional guest journey.",
-      projectType: "Hospitality & Suites",
-      rating: 5
-    },
-    {
-      clientName: "Arjun & Radhika Mehra",
-      role: "Founders",
-      company: "Studio Apex",
-      quote: "The turnkey execution gave us zero sleepless nights. From civil work to the last custom brass handle, the craftsmanship is genuinely world-class.",
+      clientName: "Rajiv & Ananya Sharma",
+      role: "Homeowners",
+      company: "Gaur City Sky Villa",
+      quote: "The turnkey execution by Genrev Interio gave us complete peace of mind. As promised on their social page, whenever any challenge came up on site, their team stepped in, solved it, and kept the project moving. The Vastu layout and modular kitchen detailing are astonishing.",
       projectType: "Turnkey Penthouse",
+      rating: 5
+    },
+    {
+      clientName: "Sunil Agarwal",
+      role: "Managing Director",
+      company: "Apex Innovations",
+      quote: "Genrev Interio transformed our corporate workspace in Delhi NCR. From 3D space planning to turnkey execution of acoustic baffles and executive boardrooms, the craftsmanship is truly world-class.",
+      projectType: "Corporate Atelier",
+      rating: 5
+    },
+    {
+      clientName: "Meenakshi & Pradeep Verma",
+      role: "Estate Owners",
+      company: "Jaypee Greens Imperial",
+      quote: "From initial 3D visualization to the final brass handle, Genrev Interio's team truly lives up to 'We create your legacy'. Italian marble joints, cove lighting warmth, and punctuality were phenomenal.",
+      projectType: "Luxury Villa",
       rating: 5
     }
   ];

@@ -1,25 +1,31 @@
 import React from 'react';
-import { Building2, Armchair, Compass, ArrowRight, ShieldCheck, Award } from 'lucide-react';
+import { Building2, Armchair, Compass, Sparkles, CheckCircle2, MapPin, ArrowRight } from 'lucide-react';
 
 export default function AboutSection() {
   const specializations = [
     {
-      title: 'ARCHITECTURE',
-      desc: 'Bespoke structural masterworks, climatic facades, and sustainable planning.',
+      title: 'ARCHITECTURE & 3D VISUALIZATION',
+      desc: 'Bespoke structural masterworks, climatic facades, and photorealistic 3D architectural renders.',
       icon: Building2,
       number: '01'
     },
     {
-      title: 'INTERIORS',
-      desc: 'Bespoke residential sanctuaries, luxury hospitality salons, and corporate headquarters.',
+      title: 'LUXURY INTERIORS',
+      desc: 'Modular kitchens, master suites, ambient cove lighting, imported Italian marble, and bespoke millwork.',
       icon: Armchair,
       number: '02'
     },
     {
-      title: 'PLANNING & TURNKEY',
-      desc: 'Comprehensive end-to-end execution, civil engineering, and artisanal millwork.',
+      title: 'TURNKEY EXECUTION & CIVIL',
+      desc: 'Complete end-to-end execution from civil alterations and MEP to final styling with zero hassle.',
       icon: Compass,
       number: '03'
+    },
+    {
+      title: 'VASTU SHASTRA HARMONY',
+      desc: 'Scientific spatial alignment ensuring positive natural energy flow, serenity, and family prosperity.',
+      icon: Sparkles,
+      number: '04'
     }
   ];
 
@@ -34,7 +40,7 @@ export default function AboutSection() {
         {/* Section Tagline matching "ABOUT GO.ARCH" */}
         <div className="flex items-center gap-3 mb-16">
           <span className="text-xs uppercase tracking-[0.35em] text-white font-mono-num font-semibold">
-            ABOUT <span className="text-[#C5A880]">GENREV.INTERIO</span>
+            ABOUT <span className="text-[#C5A880]">GENREV INTERIO</span>
           </span>
           <span className="w-16 h-[1px] bg-white/10"></span>
         </div>
@@ -44,27 +50,32 @@ export default function AboutSection() {
           {/* Left Column: Vision & Philosophy */}
           <div className="lg:col-span-4 pr-0 lg:pr-6">
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-editorial font-bold text-white leading-tight mb-6">
-              we turn ideas into <br />
-              <span className="text-[#C5A880]">works of art.</span>
+              we create your legacy <br />
+              <span className="text-[#C5A880]">from concept to execution.</span>
             </h3>
             
             <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed mb-6 font-light">
-              For each project we establish relationships with partners who we know will help us create added value for your project. As well as bringing together the public and private sectors, we make sector-overarching links to gather knowledge and to learn from each other.
+              At <strong className="text-white font-medium">GENREV INTERIO PVT. LTD.</strong>, we transform your vision into thoughtfully designed spaces—where aesthetics, functionality, and comfort come together seamlessly. From concept to execution, every detail is crafted especially for you.
             </p>
 
-            <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed mb-8 font-light">
-              The way we undertake projects is based on permanently applying values that reinforce each other: socio-cultural value, experiential value, building-technical value and economical value.
-            </p>
+            <div className="p-4 rounded-xl bg-white/[0.03] border border-[#C5A880]/20 mb-8">
+              <p className="text-xs italic text-[#E2E1DC] font-serif leading-relaxed">
+                "Site problem? We've got it covered. From design to execution, if any challenge comes up on site, our team steps in, solves it, and keeps the project moving."
+              </p>
+              <span className="text-[10px] font-mono-num uppercase tracking-wider text-[#C5A880] block mt-2">
+                — Genrev Interio On-Site Guarantee
+              </span>
+            </div>
 
             <div className="pt-4 border-t border-white/10 flex items-center gap-6 text-xs text-neutral-400 font-mono-num">
               <div>
-                <span className="text-[#C5A880] font-bold block text-sm">100%</span>
-                Bespoke Tailoring
+                <span className="text-[#C5A880] font-bold block text-sm">150+</span>
+                Spaces Delivered
               </div>
               <div className="w-[1px] h-8 bg-white/10"></div>
               <div>
-                <span className="text-[#C5A880] font-bold block text-sm">ISO 9001</span>
-                Quality Standard
+                <span className="text-[#C5A880] font-bold block text-sm">4.9 ★</span>
+                Verified Reviews
               </div>
             </div>
           </div>
@@ -73,18 +84,18 @@ export default function AboutSection() {
           <div className="lg:col-span-4 lg:px-4 border-t lg:border-t-0 lg:border-l lg:border-r border-white/10 pt-8 lg:pt-0">
             <div className="mb-6">
               <span className="text-xs uppercase tracking-[0.25em] text-white font-semibold block mb-1">
-                our specialization:
+                our core specializations:
               </span>
               <span className="w-8 h-[2px] bg-[#C5A880] block"></span>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {specializations.map((spec) => {
                 const Icon = spec.icon;
                 return (
                   <div 
                     key={spec.title}
-                    className="p-5 rounded-xl bg-[#16171D] hover:bg-[#1C1D24] border border-white/5 hover:border-[#C5A880]/40 transition duration-300 group"
+                    className="p-4 rounded-xl bg-[#16171D] hover:bg-[#1C1D24] border border-white/5 hover:border-[#C5A880]/40 transition duration-300 group"
                   >
                     <div className="flex items-start gap-4">
                       <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-[#C5A880]/20 text-[#C5A880] transition">
@@ -92,14 +103,14 @@ export default function AboutSection() {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
-                          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-white group-hover:text-[#C5A880] transition">
+                          <h4 className="text-[11px] font-bold uppercase tracking-[0.18em] text-white group-hover:text-[#C5A880] transition">
                             {spec.title}
                           </h4>
                           <span className="text-[10px] font-mono-num text-neutral-600">
                             {spec.number}
                           </span>
                         </div>
-                        <p className="text-xs text-neutral-400 mt-2 leading-relaxed">
+                        <p className="text-[11px] text-neutral-400 mt-1.5 leading-relaxed">
                           {spec.desc}
                         </p>
                       </div>

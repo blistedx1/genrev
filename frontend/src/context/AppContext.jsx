@@ -44,6 +44,11 @@ export const AppProvider = ({ children }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeSlide, setActiveSlide] = useState(0);
 
+  useEffect(() => {
+    document.documentElement.classList.remove('light-theme');
+    document.documentElement.classList.add('dark');
+  }, []);
+
   // Fetch all live data from backend API if available
   const fetchData = async () => {
     try {

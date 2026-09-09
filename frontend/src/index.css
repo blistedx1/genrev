@@ -38,6 +38,14 @@
   .font-mono-num {
     font-family: 'Space Grotesk', monospace;
   }
+
+  .font-architectural {
+    font-family: 'Oswald', 'Space Grotesk', -apple-system, sans-serif;
+  }
+
+  .font-syne {
+    font-family: 'Syne', sans-serif;
+  }
 }
 
 /* Custom Scrollbar */

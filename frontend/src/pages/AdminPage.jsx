@@ -19,8 +19,15 @@ import {
   Mail, 
   Building,
   Lock,
-  Unlock
+  Unlock,
+  KeyRound,
+  Eye,
+  EyeOff,
+  LogOut,
+  ShieldAlert,
+  ArrowRight
 } from 'lucide-react';
+import BrandLogo from '../components/BrandLogo';
 
 export default function AdminPage() {
   const { 
@@ -33,9 +40,68 @@ export default function AdminPage() {
     refreshData
   } = useApp();
 
+  // Authentication State
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return sessionStorage.getItem('genrev_admin_auth') === 'true';
+  });
+  const [userIdInput, setUserIdInput] = useState('');
+  const [passcodeInput, setPasscodeInput] = useState('');
+  const [showPasscode, setShowPasscode] = useState(false);
+  const [authError, setAuthError] = useState('');
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+
   const [activeTab, setActiveTab] = useState('inquiries'); // 'inquiries', 'addProject', 'projects', 'testimonials'
   const [statusMsg, setStatusMsg] = useState('');
   const [submitting, setSubmitting] = useState(false);
+
+  // Authentication Handler
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    setAuthError('');
+    setIsAuthenticating(true);
+
+    const cleanUserId = userIdInput.trim();
+    const cleanPasscode = passcodeInput.trim();
+
+    // Direct check for required credentials: admin@gen & interio@gen
+    if (cleanUserId === 'admin@gen' && cleanPasscode === 'interio@gen') {
+      sessionStorage.setItem('genrev_admin_auth', 'true');
+      setIsAuthenticated(true);
+      fetchContacts();
+      refreshData();
+      setIsAuthenticating(false);
+      return;
+    }
+
+    // Try backend verification fallback
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: cleanUserId, passcode: cleanPasscode })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        sessionStorage.setItem('genrev_admin_auth', 'true');
+        setIsAuthenticated(true);
+        fetchContacts();
+        refreshData();
+        setIsAuthenticating(false);
+        return;
+      }
+    } catch (err) {}
+
+    setIsAuthenticating(false);
+    setAuthError('Invalid User ID or Passcode. Access restricted.');
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('genrev_admin_auth');
+    setIsAuthenticated(false);
+    setUserIdInput('');
+    setPasscodeInput('');
+    setAuthError('');
+  };
 
   // New Project Form State
   const [newProject, setNewProject] = useState({
@@ -141,6 +207,128 @@ export default function AdminPage() {
     }
   };
 
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-[#0C0D10] text-[#E2E1DC] flex flex-col justify-between p-6 sm:p-10 select-none relative overflow-hidden">
+        {/* Subtle Ambient Radial Glow */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C5A880]/5 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Top bar with back to site */}
+        <div className="max-w-md mx-auto w-full flex items-center justify-between z-10">
+          <a
+            href="/"
+            className="inline-flex items-center gap-2 text-xs font-mono-num uppercase tracking-wider text-neutral-400 hover:text-white transition px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-white/25"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 text-[#C5A880]" />
+            <span>Return to Site</span>
+          </a>
+
+          <div className="flex items-center gap-1.5 text-[11px] font-mono-num text-neutral-500">
+            <Lock className="w-3.5 h-3.5 text-[#C5A880]" />
+            <span>RESTRICTED CONSOLE</span>
+          </div>
+        </div>
+
+        {/* Main Login Card */}
+        <div className="max-w-md mx-auto w-full z-10 my-auto py-8">
+          <div className="p-8 sm:p-10 rounded-3xl bg-[#14151A]/95 backdrop-blur-xl border border-white/10 shadow-2xl space-y-6">
+            
+            {/* Header Brand & Lock */}
+            <div className="text-center space-y-3">
+              <div className="inline-flex p-3.5 rounded-2xl bg-white/5 border border-white/10 text-[#C5A880] shadow-inner mb-1">
+                <KeyRound className="w-6 h-6" />
+              </div>
+              
+              <div className="space-y-1">
+                <h1 className="text-2xl font-bold font-sans tracking-tight text-white uppercase">
+                  Executive Admin Portal
+                </h1>
+                <p className="text-xs text-neutral-400 font-mono-num">
+                  GENREV INTERIO MANAGEMENT & LEADS
+                </p>
+              </div>
+            </div>
+
+            {/* Error Message */}
+            {authError && (
+              <div className="p-3.5 rounded-xl bg-red-950/40 border border-red-500/40 flex items-center gap-3 text-red-300 text-xs font-mono-num animate-in fade-in duration-200">
+                <ShieldAlert className="w-4 h-4 text-red-400 flex-shrink-0" />
+                <span>{authError}</span>
+              </div>
+            )}
+
+            {/* Login Form */}
+            <form onSubmit={handleLoginSubmit} className="space-y-4">
+              <div>
+                <label className="block text-[11px] font-mono-num font-semibold uppercase tracking-widest text-neutral-400 mb-1.5">
+                  User ID
+                </label>
+                <div className="relative">
+                  <User className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    required
+                    value={userIdInput}
+                    onChange={(e) => setUserIdInput(e.target.value)}
+                    placeholder="admin@gen"
+                    className="w-full bg-[#0C0D10] border border-white/10 focus:border-[#C5A880] text-white rounded-xl pl-10 pr-4 py-3 text-sm outline-none transition font-mono-num placeholder:text-neutral-600"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-mono-num font-semibold uppercase tracking-widest text-neutral-400 mb-1.5">
+                  Passcode
+                </label>
+                <div className="relative">
+                  <Lock className="w-4 h-4 text-neutral-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <input
+                    type={showPasscode ? 'text' : 'password'}
+                    required
+                    value={passcodeInput}
+                    onChange={(e) => setPasscodeInput(e.target.value)}
+                    placeholder="••••••••••"
+                    className="w-full bg-[#0C0D10] border border-white/10 focus:border-[#C5A880] text-white rounded-xl pl-10 pr-11 py-3 text-sm outline-none transition font-mono-num placeholder:text-neutral-600"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPasscode(!showPasscode)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-neutral-500 hover:text-white transition cursor-pointer"
+                    title={showPasscode ? 'Hide passcode' : 'Show passcode'}
+                  >
+                    {showPasscode ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isAuthenticating}
+                className="w-full py-3.5 mt-2 rounded-xl bg-[#C5A880] hover:bg-[#DFC49F] text-black font-semibold text-xs font-mono-num tracking-widest uppercase transition-all duration-300 shadow-lg shadow-[#C5A880]/15 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              >
+                <span>{isAuthenticating ? 'VERIFYING...' : 'AUTHENTICATE & ENTER'}</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </form>
+
+            {/* Registered ID & Passcode info */}
+            <div className="pt-2 border-t border-white/5 text-center">
+              <p className="text-[11px] font-mono-num text-neutral-500">
+                Authorized User ID: <code className="text-[#C5A880]">admin@gen</code>
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Footer info */}
+        <div className="text-center text-[10px] font-mono-num text-neutral-600 z-10">
+          GENREV INTERIO PVT. LTD. • SECURE ARCHITECTURAL DATABASE
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#0D0E11] text-[#E2E1DC] selection:bg-[#C5A880]/30 selection:text-white">
       {/* Top Admin Header */}
@@ -167,9 +355,10 @@ export default function AdminPage() {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 text-xs font-mono-num">
+          {/* Active User Badge */}
+          <div className="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono-num text-neutral-300">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>REST API ONLINE :5000</span>
+            <span className="text-neutral-400">admin@gen</span>
           </div>
 
           <button
@@ -177,10 +366,20 @@ export default function AdminPage() {
               fetchContacts();
               refreshData();
             }}
-            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white transition"
+            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-neutral-300 hover:text-white transition cursor-pointer"
             title="Sync Database"
           >
             <RefreshCw className="w-4 h-4" />
+          </button>
+
+          {/* Logout Button */}
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-950/30 hover:bg-red-950/60 border border-red-500/20 hover:border-red-500/40 text-red-300 text-xs font-mono-num uppercase tracking-wider transition cursor-pointer"
+            title="Sign Out of Console"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Logout</span>
           </button>
         </div>
       </header>

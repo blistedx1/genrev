@@ -77,48 +77,73 @@ export default function ContactSection() {
 
             {/* Direct Contact Details */}
             <div className="space-y-4 pt-4 border-t border-white/10 text-xs font-mono-num">
-              <div className="flex items-center gap-3 text-neutral-300">
-                <Phone className="w-4 h-4 text-[#C5A880]" />
+              <div className="flex items-center gap-3 text-neutral-200">
+                <Phone className="w-4 h-4 text-[#C5A880] flex-shrink-0" />
                 <div>
-                  <a href="tel:+12124567890" className="hover:text-white transition block">
-                    +1 (212) 456-78-90
+                  <a href="tel:+919958323002" className="hover:text-[#C5A880] transition font-bold text-sm block">
+                    +91 99583 23002
                   </a>
-                  <a href="tel:+919820012345" className="hover:text-white transition block text-neutral-500 mt-0.5">
-                    +91 (022) 287-05-22
-                  </a>
+                  <span className="text-[11px] text-neutral-400">Direct Call & WhatsApp Consultation</span>
                 </div>
               </div>
 
               <div className="flex items-center gap-3 text-neutral-300">
-                <Mail className="w-4 h-4 text-[#C5A880]" />
+                <Mail className="w-4 h-4 text-[#C5A880] flex-shrink-0" />
                 <a href="mailto:info@genrevinterio.com" className="hover:text-white transition">
                   info@genrevinterio.com
                 </a>
               </div>
 
               <div className="flex items-start gap-3 text-neutral-300">
-                <MapPin className="w-4 h-4 text-[#C5A880] mt-0.5" />
-                <span>
-                  Genrev Tower, Level 14, Senapati Bapat Marg,<br />
-                  Lower Parel, Mumbai 400013, India<br />
-                  <span className="text-neutral-500">Affiliate Atelier: 57 Quigley Bridge, New York</span>
-                </span>
+                <MapPin className="w-4 h-4 text-[#C5A880] mt-0.5 flex-shrink-0" />
+                <div>
+                  <span className="font-semibold text-white block">Experience Centre & Studio:</span>
+                  <span>
+                    SF-03, Gaur City Centre, Gaur City Mall,<br />
+                    Near Char Murti Chauk, Sector 4,<br />
+                    Greater Noida West, Uttar Pradesh 203207
+                  </span>
+                  <div className="mt-2 pt-2 border-t border-white/5 text-neutral-400 text-[11px]">
+                    <span className="text-[#C5A880] font-medium">Registered Office:</span> C-587, Panki, Kanpur Nagar, Uttar Pradesh 208020
+                  </div>
+                </div>
               </div>
 
               <div className="flex items-center gap-3 text-neutral-400">
-                <Clock className="w-4 h-4 text-[#C5A880]" />
-                <span>Monday – Saturday: 09:30 – 19:00 IST</span>
+                <Clock className="w-4 h-4 text-[#C5A880] flex-shrink-0" />
+                <span>Monday – Saturday: 10:00 AM – 07:30 PM IST</span>
               </div>
+            </div>
+
+            {/* Social & WhatsApp Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <a
+                href="https://wa.me/919958323002?text=Hello%20Genrev%20Interio,%20I%20would%20like%20to%20inquire%20about%20interior%20design%20and%20turnkey%20execution."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-xl bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-white border border-emerald-500/30 text-xs font-semibold tracking-wider transition flex items-center gap-2"
+              >
+                <span>WhatsApp Us</span>
+              </a>
+
+              <a
+                href="https://www.instagram.com/genrev.interio.pvt.ltd"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-xl bg-white/5 hover:bg-[#C5A880] text-neutral-300 hover:text-black border border-white/10 text-xs font-semibold tracking-wider transition flex items-center gap-2"
+              >
+                <span>Instagram @genrev.interio.pvt.ltd</span>
+              </a>
             </div>
 
             {/* Turnkey Assurance Badge */}
             <div className="p-4 rounded-xl bg-white/5 border border-white/5 text-xs">
               <div className="flex items-center gap-2 text-[#C5A880] font-semibold mb-1">
                 <span className="w-2 h-2 rounded-full bg-[#C5A880]"></span>
-                Strict Privacy Guarantee
+                Turnkey Execution & Vastu Guarantee
               </div>
               <p className="text-neutral-400 text-[11px] leading-relaxed">
-                All client consultations, architectural plans, and NDA agreements are treated with the utmost executive confidentiality.
+                Site problem? We've got it covered. Complete transparency, on-time handover, and scientific spatial planning tailored to your family's legacy.
               </p>
             </div>
           </div>

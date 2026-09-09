@@ -3,10 +3,10 @@ import { Award, Building, Users, Trophy } from 'lucide-react';
 
 export default function StatsSection() {
   const statItems = [
-    { number: '10+', label: 'YEARS OF EXCELLENCE', sub: 'In the architectural market' },
-    { number: '150+', label: 'PROJECTS DELIVERED', sub: 'Spanning residential & commercial' },
-    { number: '98%', label: 'CLIENT SATISFACTION', sub: 'Lifetime referral rate' },
-    { number: '25+', label: 'DESIGN ACCOLADES', sub: 'National & international honours' }
+    { number: '5+', label: 'YEARS IN BUSINESS', sub: 'Turnkey interior executors in Delhi NCR' },
+    { number: '150+', label: 'PROJECTS DELIVERED', sub: 'Spanning luxury residences & commercial' },
+    { number: '4.9★', label: 'CLIENT SATISFACTION', sub: '160+ verified Google & directory reviews' },
+    { number: '129+', label: 'PORTFOLIO SHOWCASES', sub: 'On official Instagram @genrev.interio.pvt.ltd' }
   ];
 
   return (
@@ -26,16 +26,16 @@ export default function StatsSection() {
                 filter: 'contrast(1.4) brightness(1.2)'
               }}
             >
-              10+
+              5+
             </span>
 
             <div className="max-w-xs">
               <h3 className="text-xl sm:text-2xl font-editorial font-bold text-white uppercase tracking-wider leading-snug">
-                YEARS OF SUCCESSFUL WORK <br />
-                <span className="text-[#C5A880]">IN THE LUXURY MARKET</span>
+                YEARS OF TURNKEY EXCELLENCE <br />
+                <span className="text-[#C5A880]">IN DELHI NCR & NOIDA</span>
               </h3>
               <p className="text-xs text-neutral-400 mt-2 leading-relaxed">
-                Founded on the uncompromising pursuit of spatial harmony, timeless materiality, and engineering rigour.
+                Transforming residential and commercial spaces into living art with Vastu precision, master craftsmanship, and transparent turnkey execution.
               </p>
             </div>
           </div>
@@ -46,8 +46,8 @@ export default function StatsSection() {
               <p className="text-[11px] uppercase tracking-wider text-neutral-400 mt-1">Delivered Projects</p>
             </div>
             <div className="p-6 rounded-xl bg-white/5 border border-white/5">
-              <span className="text-3xl font-bold font-mono-num text-[#C5A880]">98%</span>
-              <p className="text-[11px] uppercase tracking-wider text-neutral-400 mt-1">Satisfaction Rate</p>
+              <span className="text-3xl font-bold font-mono-num text-emerald-400">4.9 ★</span>
+              <p className="text-[11px] uppercase tracking-wider text-neutral-400 mt-1">160+ Reviews</p>
             </div>
           </div>
         </div>

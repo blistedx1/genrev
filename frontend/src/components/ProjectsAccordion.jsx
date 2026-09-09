@@ -5,35 +5,35 @@ import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
 const defaultPanels = [
   {
     id: 'p1',
-    title: 'RESIDENTIAL CARE PROJECT IN PARIS',
-    category: 'ARCHITECTURE',
-    location: 'Paris, France',
-    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=85',
-    desc: 'Sculptural curved glass and acoustic facade integrating natural lighting and contemplative courtyards.'
+    title: 'URBAN LUMINA TOWNHOUSE',
+    category: 'TURNKEY ARCHITECTURE',
+    location: 'Greater Noida West, Delhi NCR',
+    image: '/projects/townhouse_night.jpg',
+    desc: 'Bespoke 3-story luxury residence featuring vertical wooden louvers, 3D CNC stone facade, and ambient cove lighting.'
   },
   {
     id: 'p2',
-    title: 'CONCERT HALL IN NEW YORK',
-    category: 'ARCHITECTURE',
-    location: 'Manhattan, New York',
-    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=85',
-    desc: 'Parametric acoustic ribbons harmonizing space, light, and sound for world-class philharmonics.'
+    title: 'ROYAL ROMANESQUE VILLA',
+    category: 'CLASSICAL ARCHITECTURE',
+    location: 'Noida Expressway',
+    image: '/projects/villa_facade.jpg',
+    desc: 'Palatial 2-story classical villa featuring grand fluted Roman porticos, balustrades, and expansive manicured front lawn.'
   },
   {
     id: 'p3',
-    title: 'MODERN HOTEL IN LONDON',
-    category: 'HOSPITALITY',
-    location: 'Mayfair, London',
-    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85',
-    desc: 'Mid-century European salon luxury with bespoke brass joinery and subterranean wine vaults.'
+    title: 'DOUBLE-HEIGHT DRAWING HALL',
+    category: 'LUXURY INTERIORS',
+    location: 'Greater Noida West',
+    image: '/projects/villa_living.jpg',
+    desc: 'Monumental crystal chandelier, classical wall moldings, and beige Italian marble inlay flooring.'
   },
   {
     id: 'p4',
-    title: 'SKYLINE PENTHOUSE IN MUMBAI',
-    category: 'INTERIORS',
-    location: 'Worli Sea Face, Mumbai',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85',
-    desc: 'Monolithic Statuario marble living room floating above the ocean horizon with custom Italian millwork.'
+    title: "CHEF'S TURNKEY MODULAR KITCHEN",
+    category: 'TURNKEY INTERIORS',
+    location: 'Sector 78, Noida',
+    image: '/projects/luxury_kitchen.jpg',
+    desc: 'Calacatta quartz waterfall island, handleless matte charcoal cabinetry, and warm fluted timber accents.'
   }
 ];
 

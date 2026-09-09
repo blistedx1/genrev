@@ -325,20 +325,41 @@ export default function ThreeStudioViewer() {
     window.addEventListener('mouseup', onMouseUp);
     container.addEventListener('wheel', onWheel, { passive: false });
 
-    // Animation Loop
-    let animId;
+    // Animation Loop with Intersection Observer for 60fps performance
+    let animId = null;
+    let isVisible = false;
+
     const animate = () => {
+      if (!isVisible) return;
       animId = requestAnimationFrame(animate);
 
       if (autoRotate && !isDragging) {
-        spherical.theta += 0.0025;
+        spherical.theta += 0.002;
         updateCameraFromSpherical();
       }
 
       renderer.render(scene, camera);
     };
 
-    animate();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          if (!animId) {
+            animId = requestAnimationFrame(animate);
+          }
+        } else {
+          if (animId) {
+            cancelAnimationFrame(animId);
+            animId = null;
+          }
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(container);
 
     const handleResize = () => {
       if (!container) return;
@@ -350,12 +371,13 @@ export default function ThreeStudioViewer() {
     window.addEventListener('resize', handleResize);
 
     return () => {
+      observer.disconnect();
       container.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
       container.removeEventListener('wheel', onWheel);
       window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animId);
+      if (animId) cancelAnimationFrame(animId);
       if (renderer.domElement && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }

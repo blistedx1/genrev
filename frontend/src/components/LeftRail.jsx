@@ -57,38 +57,22 @@ export default function LeftRail({ totalSlides = 4 }) {
       {/* Social Links Rail */}
       <div className="flex flex-col items-center gap-4 text-neutral-400 pb-4">
         <a 
-          href="https://instagram.com" 
+          href="https://www.instagram.com/genrev.interio.pvt.ltd" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="hover:text-[#C5A880] transition transform hover:scale-110"
-          aria-label="Instagram"
+          className="hover:text-[#C5A880] transition transform hover:scale-110 text-neutral-300"
+          aria-label="Instagram @genrev.interio.pvt.ltd"
+          title="Instagram @genrev.interio.pvt.ltd"
         >
           <InstagramIcon className="w-4 h-4" />
         </a>
         <a 
-          href="https://twitter.com" 
+          href="https://www.facebook.com/profile.php?id=61550528653657" 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="hover:text-[#C5A880] transition transform hover:scale-110"
-          aria-label="Twitter / X"
-        >
-          <TwitterIcon className="w-3.5 h-3.5" />
-        </a>
-        <a 
-          href="https://behance.net" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="hover:text-[#C5A880] transition transform hover:scale-110"
-          aria-label="Behance"
-        >
-          <BehanceIcon className="w-4 h-4" />
-        </a>
-        <a 
-          href="https://facebook.com" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="hover:text-[#C5A880] transition transform hover:scale-110"
-          aria-label="Facebook"
+          className="hover:text-[#C5A880] transition transform hover:scale-110 text-neutral-300"
+          aria-label="Facebook Genrev Interio pvt.ltd"
+          title="Facebook Genrev Interio pvt.ltd"
         >
           <FacebookIcon className="w-4 h-4" />
         </a>
