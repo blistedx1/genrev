@@ -89,7 +89,7 @@ export default function ProjectsAccordion() {
                 {/* Top: Title */}
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[10px] font-mono-num text-[#C5A880] tracking-widest uppercase">
+                    <span className="text-[10px] font-mono-num text-gold tracking-widest uppercase">
                       0{idx + 1}
                     </span>
                   </div>
@@ -98,10 +98,10 @@ export default function ProjectsAccordion() {
                   </h3>
                 </div>
 
-                {/* Center / Navigation Indicators if active */}
+                {/* Center / Navigation Indicators if active (responsive for both mobile and desktop) */}
                 {isActive && (
-                  <div className="my-auto hidden md:block animate-fade-in">
-                    <p className="text-xs text-neutral-300 max-w-xs line-clamp-3 font-light leading-relaxed mb-4">
+                  <div className="my-auto block animate-fade-in py-2">
+                    <p className="text-xs text-neutral-300 max-w-sm line-clamp-2 md:line-clamp-3 font-light leading-relaxed mb-3">
                       {panel.desc}
                     </p>
                     <button
@@ -109,7 +109,7 @@ export default function ProjectsAccordion() {
                         e.stopPropagation();
                         handleSelect(panel);
                       }}
-                      className="px-4 py-2 rounded-full bg-white/10 hover:bg-[#C5A880] hover:text-black text-white text-xs font-semibold tracking-wider transition flex items-center gap-2 backdrop-blur-sm border border-white/20 cursor-pointer"
+                      className="px-4 py-2 rounded-full bg-white/10 hover:bg-gold hover:text-black text-white text-xs font-semibold tracking-wider transition flex items-center gap-2 backdrop-blur-sm border border-white/20 cursor-pointer active:scale-95"
                     >
                       <span>VIEW FULL CASE STUDY</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -117,20 +117,24 @@ export default function ProjectsAccordion() {
                   </div>
                 )}
 
-                {/* Bottom: Vertical Category Label & Prev/Next triggers matching screenshot */}
-                <div className="flex items-end justify-between">
-                  <span className="writing-vertical rotate-180 text-[10px] uppercase tracking-[0.35em] text-neutral-400 select-none">
+                {/* Bottom: Responsive Category Label & Prev/Next triggers */}
+                <div className="flex items-end justify-between gap-4">
+                  {/* Vertical on desktop, horizontal on mobile */}
+                  <span className="hidden md:block writing-vertical rotate-180 text-[10px] uppercase tracking-[0.35em] text-neutral-400 select-none">
+                    {panel.category}
+                  </span>
+                  <span className="md:hidden text-[10px] uppercase tracking-[0.2em] text-neutral-400 truncate max-w-[200px]">
                     {panel.category}
                   </span>
 
-                  {/* Left / Right arrow on first and last cards as seen in screenshot */}
+                  {/* Left / Right arrow on first and last cards */}
                   {idx === 0 && (
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         handlePrev();
                       }}
-                      className="p-2 rounded-full bg-black/60 hover:bg-[#C5A880] hover:text-black text-white transition text-xs border border-white/10 flex items-center gap-1 cursor-pointer"
+                      className="p-2 rounded-full bg-black/60 hover:bg-gold hover:text-black text-white transition text-xs border border-white/10 flex items-center gap-1 cursor-pointer"
                       title="Previous"
                     >
                       <ChevronLeft className="w-4 h-4" />
@@ -144,7 +148,7 @@ export default function ProjectsAccordion() {
                         e.stopPropagation();
                         handleNext();
                       }}
-                      className="p-2 rounded-full bg-black/60 hover:bg-[#C5A880] hover:text-black text-white transition text-xs border border-white/10 flex items-center gap-1 cursor-pointer"
+                      className="p-2 rounded-full bg-black/60 hover:bg-gold hover:text-black text-white transition text-xs border border-white/10 flex items-center gap-1 cursor-pointer"
                       title="Next"
                     >
                       <span className="text-[10px] font-mono-num uppercase pl-1">NEXT</span>

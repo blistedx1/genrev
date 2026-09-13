@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BookOpen, Calendar, Clock, ArrowRight, User, Tag, Sparkles, X, ChevronRight, Share2 } from 'lucide-react';
 import LazyImage from './LazyImage';
 
@@ -166,6 +166,18 @@ By intentionally planning shadow zones adjacent to brightly lit courtyards, spac
 export default function JournalSection() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeArticle, setActiveArticle] = useState(null);
+
+  // Lock body scroll when article reading modal is open
+  useEffect(() => {
+    if (activeArticle) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [activeArticle]);
 
   const categories = [
     'All',
@@ -341,13 +353,13 @@ export default function JournalSection() {
           onClick={() => setActiveArticle(null)}
         >
           <div 
-            className="relative w-full max-w-4xl my-auto bg-[#14151A] border border-[#C5A880]/30 rounded-2xl overflow-hidden shadow-2xl text-white max-h-[90vh] flex flex-col"
+            className="relative w-full max-w-4xl my-auto bg-dark-surface border border-gold/30 rounded-2xl overflow-hidden shadow-2xl text-white max-h-[90vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#101115]">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-dark-bg/95">
               <div className="flex items-center gap-3">
-                <span className="px-3 py-1 rounded-full text-[10px] font-mono-num uppercase tracking-widest bg-[#C5A880] text-black font-bold">
+                <span className="px-3 py-1 rounded-full text-[10px] font-mono-num uppercase tracking-widest bg-gold text-black font-bold">
                   {activeArticle.category}
                 </span>
                 <span className="text-xs font-mono-num text-neutral-400 hidden sm:inline">
@@ -357,7 +369,7 @@ export default function JournalSection() {
 
               <button
                 onClick={() => setActiveArticle(null)}
-                className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#C5A880] hover:text-black text-white flex items-center justify-center transition border border-white/10 cursor-pointer"
+                className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-gold hover:text-black text-white flex items-center justify-center transition border border-white/10 cursor-pointer active:scale-95"
                 aria-label="Close article"
               >
                 <X className="w-4 h-4" />

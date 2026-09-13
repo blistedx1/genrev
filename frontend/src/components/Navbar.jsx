@@ -14,6 +14,18 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const navLinks = [
     { label: 'HOME', href: '#home' },
     { label: 'ABOUT', href: '#about' },
@@ -30,7 +42,7 @@ export default function Navbar() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-[#0D0E12]/95 backdrop-blur-md py-4 border-b border-white/[0.06] shadow-2xl' 
+          ? 'bg-dark-bg/95 backdrop-blur-md py-4 border-b border-white/[0.06] shadow-2xl' 
           : 'bg-gradient-to-b from-black/85 via-black/40 to-transparent py-5'
       }`}
     >
@@ -83,24 +95,24 @@ export default function Navbar() {
         <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 transition cursor-pointer text-neutral-300 hover:text-white"
+            className="p-2 transition cursor-pointer text-neutral-300 hover:text-white rounded-lg active:bg-white/10"
             aria-label="Toggle Menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-6 h-6 text-gold" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0D0E12]/98 backdrop-blur-2xl border-b border-white/10 px-8 py-8 transition-all animate-in fade-in slide-in-from-top-4 duration-300">
-          <nav className="flex flex-col gap-5 text-xs font-mono-num tracking-[0.25em] font-medium text-neutral-300">
+        <div className="lg:hidden bg-dark-bg/98 backdrop-blur-2xl border-b border-white/10 px-8 py-8 transition-all animate-in fade-in slide-in-from-top-4 duration-300 shadow-2xl max-h-[85vh] overflow-y-auto">
+          <nav className="flex flex-col gap-4 text-xs font-mono-num tracking-[0.25em] font-medium text-neutral-300">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="hover:text-white py-1 border-b border-white/5 uppercase"
+                className="hover:text-gold active:text-gold py-2.5 border-b border-white/5 uppercase transition-colors"
               >
                 {link.label}
               </a>
@@ -109,7 +121,7 @@ export default function Navbar() {
             <div className="pt-4 flex flex-col gap-3">
               <a
                 href="tel:+919958323002"
-                className="flex items-center gap-2 text-xs font-mono-num text-neutral-300 py-2"
+                className="flex items-center gap-2 text-xs font-mono-num text-neutral-300 py-2.5"
               >
                 <Phone className="w-4 h-4 text-[#E52E2D]" />
                 <span>+91 99583 23002</span>
@@ -117,7 +129,7 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3 text-center rounded-full text-xs font-mono-num font-semibold tracking-widest uppercase bg-white text-black hover:bg-neutral-200 transition"
+                className="w-full py-3 text-center rounded-full text-xs font-mono-num font-semibold tracking-widest uppercase bg-gold text-dark-bg hover:bg-gold-light transition shadow-lg shadow-gold/20"
               >
                 INQUIRE NOW
               </a>

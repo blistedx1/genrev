@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { X, MapPin, Calendar, Layers, Clock, Award, ArrowRight, ChevronLeft, ChevronRight, Eye, Image as ImageIcon } from 'lucide-react';
 import LazyImage from './LazyImage';
@@ -7,6 +7,18 @@ export default function ProjectModal() {
   const { selectedProject, setSelectedProject } = useApp();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [lightboxImage, setLightboxImage] = useState(null);
+
+  // Lock body scroll when project modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedProject]);
 
   if (!selectedProject) return null;
 
@@ -36,7 +48,10 @@ export default function ProjectModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 lg:p-8 bg-black/85 backdrop-blur-xl animate-fade-in overflow-y-auto">
+    <div 
+      onClick={() => setSelectedProject(null)}
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 lg:p-8 bg-black/85 backdrop-blur-xl animate-fade-in overflow-y-auto"
+    >
       <div 
         className="relative w-full max-w-5xl my-auto bg-dark-surface border border-white/10 rounded-2xl overflow-hidden shadow-2xl text-white max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
@@ -54,7 +69,7 @@ export default function ProjectModal() {
 
           <button
             onClick={() => setSelectedProject(null)}
-            className="w-8 h-8 rounded-full bg-white/5 hover:bg-gold hover:text-black text-white flex items-center justify-center transition border border-white/10 cursor-pointer"
+            className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-white/5 hover:bg-gold hover:text-black text-white flex items-center justify-center transition border border-white/10 cursor-pointer active:scale-95"
             aria-label="Close modal"
           >
             <X className="w-4 h-4" />
