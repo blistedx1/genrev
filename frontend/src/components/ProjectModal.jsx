@@ -163,64 +163,79 @@ export default function ProjectModal() {
             </div>
           </div>
 
-          {/* Narrative & Architectural Specifications */}
+          {/* Narrative & Case Study Architectural Specifications */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pt-4 border-t border-white/10">
-            {/* Left: Narrative Overview */}
+            {/* Left: Design Concept Overview */}
             <div className="lg:col-span-2 space-y-4">
-              <h3 className="text-xs uppercase tracking-widest font-mono-num text-[#C5A880]">
-                DESIGN INTENT & MATERIAL REALIZATION
-              </h3>
-              <p className="text-sm sm:text-base text-neutral-300 leading-relaxed font-light">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#C5A880]" />
+                <h3 className="text-xs uppercase tracking-widest font-mono-num text-[#C5A880] font-semibold">
+                  DESIGN CONCEPT & SPATIAL EXECUTION
+                </h3>
+              </div>
+              
+              <p className="text-sm sm:text-base text-neutral-200 leading-relaxed font-light">
                 {selectedProject.detailedText || selectedProject.description}
               </p>
 
               {selectedProject.description && selectedProject.detailedText && (
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5 text-xs text-neutral-400 italic leading-relaxed">
+                <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-xs text-neutral-400 italic leading-relaxed">
                   "{selectedProject.description}"
                 </div>
               )}
+
+              <div className="p-4 rounded-xl bg-[#181920] border border-white/5 text-xs text-neutral-300 font-light flex items-center justify-between">
+                <span>Multidisciplinary practice standard: Concept to completion with turnkey site precision.</span>
+                <span className="text-[#C5A880] font-mono-num text-[11px] uppercase">Ar. Abhishek Singh Chauhan</span>
+              </div>
             </div>
 
-            {/* Right: Technical Specs Card */}
-            <div className="p-6 rounded-xl bg-[#181920] border border-white/5 space-y-3.5">
-              <h4 className="text-xs uppercase tracking-widest font-mono-num text-white font-bold border-b border-white/10 pb-2.5">
-                TECHNICAL ATTRIBUTES
+            {/* Right: Technical Case-Study Specs Card */}
+            <div className="p-6 rounded-xl bg-[#181920] border border-[#C5A880]/20 space-y-3.5 shadow-xl">
+              <h4 className="text-xs uppercase tracking-widest font-mono-num text-white font-bold border-b border-white/10 pb-2.5 flex items-center justify-between">
+                <span>CASE STUDY ATTRIBUTES</span>
+                <span className="text-[10px] text-[#C5A880] font-normal">Verified Spec</span>
               </h4>
 
               <div className="flex items-center justify-between text-xs py-1.5 border-b border-white/5">
-                <span className="text-neutral-400 flex items-center gap-2">
+                <span className="text-neutral-400">Project:</span>
+                <span className="font-medium text-white text-right max-w-[170px] truncate">{selectedProject.title}</span>
+              </div>
+
+              <div className="flex items-center justify-between text-xs py-1.5 border-b border-white/5">
+                <span className="text-neutral-400 flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-[#C5A880]" /> Location:
                 </span>
-                <span className="font-mono-num text-white">{selectedProject.location || 'Pan-India'}</span>
+                <span className="font-mono-num text-white">{selectedProject.location || 'Delhi NCR'}</span>
               </div>
 
               <div className="flex items-center justify-between text-xs py-1.5 border-b border-white/5">
-                <span className="text-neutral-400 flex items-center gap-2">
-                  <Calendar className="w-3.5 h-3.5 text-[#C5A880]" /> Completed:
+                <span className="text-neutral-400 flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-[#C5A880]" /> Scope / Sector:
                 </span>
-                <span className="font-mono-num text-white">{selectedProject.year || 2025}</span>
+                <span className="font-mono-num text-[#C5A880]">{selectedProject.category}</span>
               </div>
 
               <div className="flex items-center justify-between text-xs py-1.5 border-b border-white/5">
-                <span className="text-neutral-400 flex items-center gap-2">
-                  <Layers className="w-3.5 h-3.5 text-[#C5A880]" /> Covered Area:
+                <span className="text-neutral-400 flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-[#C5A880]" /> Covered Area:
                 </span>
-                <span className="font-mono-num text-white">{selectedProject.area || '6,500 sq.ft'}</span>
+                <span className="font-mono-num text-white">{selectedProject.area || 'Bespoke Scale'}</span>
               </div>
 
               {selectedProject.stats && (
                 <>
                   <div className="flex items-center justify-between text-xs py-1.5 border-b border-white/5">
-                    <span className="text-neutral-400 flex items-center gap-2">
-                      <Clock className="w-3.5 h-3.5 text-[#C5A880]" /> Duration:
+                    <span className="text-neutral-400 flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-[#C5A880]" /> Timeline:
                     </span>
-                    <span className="font-mono-num text-white">{selectedProject.stats.duration || '14 Months'}</span>
+                    <span className="font-mono-num text-white">{selectedProject.stats.duration || 'Turnkey Execution'}</span>
                   </div>
                   <div className="flex items-center justify-between text-xs py-1.5 border-b border-white/5">
-                    <span className="text-neutral-400 flex items-center gap-2">
-                      <Award className="w-3.5 h-3.5 text-[#C5A880]" /> Style:
+                    <span className="text-neutral-400 flex items-center gap-1.5">
+                      <Award className="w-3.5 h-3.5 text-[#C5A880]" /> Style & Vibe:
                     </span>
-                    <span className="font-mono-num text-white">{selectedProject.stats.style || 'Warm Modernism'}</span>
+                    <span className="font-mono-num text-white">{selectedProject.stats.style || 'Contemporary & Contextual'}</span>
                   </div>
                 </>
               )}

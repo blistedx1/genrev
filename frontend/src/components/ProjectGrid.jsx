@@ -15,11 +15,27 @@ export default function ProjectGrid() {
   const { projects, setSelectedProject } = useApp();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['All', 'Residential', 'Commercial', 'Hospitality', 'Turnkey Interiors', 'Architecture'];
+  const categories = ['All', 'Residential', 'Villas', 'Corporate', 'Commercial', 'Retail', 'Industrial', 'Institutional', 'Interiors'];
 
   const filteredProjects = selectedCategory === 'All' 
     ? projects 
-    : projects.filter(p => p.category.toLowerCase() === selectedCategory.toLowerCase());
+    : projects.filter(p => {
+        const cat = (p.category || '').toLowerCase();
+        const title = (p.title || '').toLowerCase();
+        const sub = (p.subtitle || '').toLowerCase();
+        const sel = selectedCategory.toLowerCase();
+
+        if (sel === 'villas') return title.includes('villa') || cat.includes('villa') || sub.includes('villa');
+        if (sel === 'interiors') return cat.includes('interior') || title.includes('interior') || sub.includes('interior') || title.includes('kitchen') || title.includes('suite');
+        if (sel === 'residential') return cat.includes('residential') || title.includes('residence') || title.includes('flat') || title.includes('townhouse') || title.includes('house');
+        if (sel === 'corporate') return cat.includes('corporate') || title.includes('partner') || title.includes('expedite') || title.includes('office');
+        if (sel === 'commercial') return cat.includes('commercial') || cat.includes('corporate') || sub.includes('commercial');
+        if (sel === 'industrial') return cat.includes('industrial') || title.includes('plant') || title.includes('industrial');
+        if (sel === 'institutional') return cat.includes('institutional') || title.includes('trust') || sub.includes('institutional');
+        if (sel === 'retail') return cat.includes('retail') || title.includes('donear') || sub.includes('retail');
+
+        return cat.includes(sel) || title.includes(sel);
+      });
 
   return (
     <div className="mt-20">

@@ -6,8 +6,12 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [projects, setProjects] = useState(() => {
     try {
-      const saved = localStorage.getItem('genrev_projects');
-      return saved ? JSON.parse(saved) : initialProjects;
+      const saved = localStorage.getItem('genrev_projects_v2') || localStorage.getItem('genrev_projects');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length >= initialProjects.length) return parsed;
+      }
+      return initialProjects;
     } catch (e) {
       return initialProjects;
     }
@@ -24,8 +28,12 @@ export const AppProvider = ({ children }) => {
 
   const [clients, setClients] = useState(() => {
     try {
-      const saved = localStorage.getItem('genrev_clients');
-      return saved ? JSON.parse(saved) : initialClients;
+      const saved = localStorage.getItem('genrev_clients_v2') || localStorage.getItem('genrev_clients');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length >= initialClients.length) return parsed;
+      }
+      return initialClients;
     } catch (e) {
       return initialClients;
     }

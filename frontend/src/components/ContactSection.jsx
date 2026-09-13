@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { ArrowRight, CheckCircle2, AlertCircle, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { ArrowRight, CheckCircle2, AlertCircle, Phone, Mail, MapPin, Clock, Building2 } from 'lucide-react';
 
 export default function ContactSection() {
   const { submitContact } = useApp();
@@ -67,11 +67,17 @@ export default function ContactSection() {
           {/* Left Column: Direct Contact & Office Details */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <h3 className="text-3xl font-editorial font-bold text-white mb-4">
-                Let's Begin Your Architectural Journey
+              <span className="text-[10px] font-mono-num uppercase tracking-[0.25em] text-[#C5A880] font-semibold block mb-2">
+                HAVE A PROJECT IN MIND?
+              </span>
+              <h3 className="text-3xl sm:text-4xl font-editorial font-bold text-white mb-4 leading-tight">
+                Let’s Create Something Extraordinary.
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
-                Whether commissioning a bespoke private residence, commercial flagship, or turnkey luxury interior, our design directors are at your service.
+              <p className="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed mb-3">
+                Whether you are planning a home, villa, office, commercial development, retail space, industrial facility or complete interior transformation, our team can help take your idea from concept to completion.
+              </p>
+              <p className="text-xs text-[#C5A880] font-mono-num uppercase tracking-wider">
+                Tell us about your project. We’ll help you shape the vision.
               </p>
             </div>
 
@@ -95,23 +101,48 @@ export default function ContactSection() {
               </div>
 
               <div className="flex items-start gap-3 text-neutral-300">
-                <MapPin className="w-4 h-4 text-[#C5A880] mt-0.5 flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-[#C5A880] mt-1 flex-shrink-0" />
                 <div>
-                  <span className="font-semibold text-white block">Experience Centre & Studio:</span>
-                  <span>
-                    SF-03, Gaur City Centre, Gaur City Mall,<br />
-                    Near Char Murti Chauk, Sector 4,<br />
-                    Greater Noida West, Uttar Pradesh 203207
+                  <span className="font-semibold text-white block text-sm">Registered Office:</span>
+                  <span className="text-xs text-neutral-300 leading-relaxed block mt-0.5">
+                    C-587, Panki, Kanpur Nagar,<br />
+                    Uttar Pradesh 208020
                   </span>
-                  <div className="mt-2 pt-2 border-t border-white/5 text-neutral-400 text-[11px]">
-                    <span className="text-[#C5A880] font-medium">Registered Office:</span> C-587, Panki, Kanpur Nagar, Uttar Pradesh 208020
-                  </div>
                 </div>
               </div>
 
               <div className="flex items-center gap-3 text-neutral-400">
                 <Clock className="w-4 h-4 text-[#C5A880] flex-shrink-0" />
                 <span>Monday – Saturday: 10:00 AM – 07:30 PM IST</span>
+              </div>
+            </div>
+
+            {/* Regional Network & Branch Offices */}
+            <div className="p-5 rounded-2xl bg-[#14151B] border border-white/5 space-y-3 shadow-lg">
+              <div className="flex items-center justify-between border-b border-white/5 pb-2.5">
+                <span className="text-[10px] font-mono-num uppercase tracking-[0.2em] text-[#C5A880] font-semibold flex items-center gap-1.5">
+                  <Building2 className="w-3.5 h-3.5 text-[#C5A880]" />
+                  <span>BRANCH OFFICES & REGIONAL NETWORK</span>
+                </span>
+                <span className="text-[9px] font-mono-num text-neutral-500 uppercase">North India</span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                {[
+                  { city: "Delhi NCR", lead: "Abhishek Singh" },
+                  { city: "Noida", lead: "Abhishek Singh" },
+                  { city: "New Delhi", lead: "Abhishek Singh" },
+                  { city: "Ghaziabad", lead: "S. B. Gupta" },
+                  { city: "Faridabad", lead: "Pankaj Sharma" },
+                  { city: "Lucknow", lead: "Nitesh Bhaiya" },
+                  { city: "Varanasi", lead: "Pushkar Srivastav" },
+                  { city: "Bareilly", lead: "Shivani Singh" }
+                ].map((b, idx) => (
+                  <div key={idx} className="p-2.5 rounded-lg bg-white/[0.02] border border-white/5 hover:border-[#C5A880]/30 transition group">
+                    <span className="font-semibold text-white block text-[11px] group-hover:text-[#C5A880] transition-colors">{b.city}</span>
+                    <span className="text-[10px] font-mono-num text-neutral-400">{b.lead}</span>
+                  </div>
+                ))}
               </div>
             </div>
 

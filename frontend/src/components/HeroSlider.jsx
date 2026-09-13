@@ -10,33 +10,32 @@ export default function HeroSlider() {
   const slides = [
     {
       id: "01",
-      tag: "ARCHITECTURE & INTERIOR STUDIO",
-      headlineLine1: "SPACES",
-      headlineLine2: "THAT SPEAK.",
-      subtitle: "Architecture shaped by light, form & purpose. Turnkey luxury residences crafted by Genrev Interio across Delhi NCR.",
-      projectName: "Urban Lumina Townhouse",
-      location: "Greater Noida West, Delhi NCR",
+      tag: "ARCHITECTURE • INTERIORS • CONSTRUCTION • PLANNING",
+      headlineLine1: "GENERATING REVOLUTION",
+      headlineLine2: "IN SPACES.",
+      subtitle: "We design and create spaces that are purposeful, refined and built around the people who experience them.",
+      projectName: "Resolüt Partners — Law Firm, India Office",
+      location: "Corporate Tech Park, Delhi NCR",
       year: "2026",
-      category: "Private Residence",
-      image: "/projects/townhouse_night_hd.jpg",
-      description: "Bespoke 3-story modern architectural residence featuring vertical wooden louvers, 3D CNC acoustic stone wall, ambient cove lighting, and private master terraces.",
+      category: "Featured Corporate Architecture",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=85",
+      description: "A contemporary corporate interior designed around professionalism, sophistication, functionality and the distinctive identity of a modern legal practice.",
       gallery: [
-        "/projects/townhouse_night_hd.jpg",
-        "/projects/townhouse_living.jpg",
-        "/projects/townhouse_bedroom.jpg",
-        "/projects/luxury_kitchen.jpg"
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=85",
+        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=85",
+        "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=85"
       ]
     },
     {
       id: "02",
-      tag: "HERITAGE ARCHITECTURE",
-      headlineLine1: "TIMELESS",
-      headlineLine2: "GRANDEUR.",
-      subtitle: "Fluted Roman porticos, hand-carved balustrades, and expansive manicured estates engineered for generations.",
+      tag: "LUXURY RESIDENCES & VILLAS",
+      headlineLine1: "DESIGN WITH PURPOSE.",
+      headlineLine2: "BUILD WITH PRECISION.",
+      subtitle: "From palatial classical villas to contemporary estates, designed around lifestyle, natural light, and timeless architectural aesthetics.",
       projectName: "Royal Romanesque Villa",
       location: "Noida Expressway",
       year: "2025",
-      category: "Heritage Villa",
+      category: "Luxury Classical Estate",
       image: "/projects/villa_facade.jpg",
       description: "Palatial 2-story classical villa with fluted Roman colonnades, marble balustrades, double-height drawing hall with crystal chandeliers.",
       gallery: [
@@ -47,20 +46,21 @@ export default function HeroSlider() {
     },
     {
       id: "03",
-      tag: "NEOCLASSICAL LUXURY",
-      headlineLine1: "SYMMETRY",
-      headlineLine2: "& PROMINENCE.",
-      subtitle: "Monumental Corinthian columns, arched floor-to-ceiling French glazing, and contemporary bespoke interiors.",
-      projectName: "Neo-Classical Grand Palais",
-      location: "Greater Noida",
+      tag: "MULTIDISCIPLINARY ARCHITECTURAL PRACTICE",
+      headlineLine1: "ONE VISION.",
+      headlineLine2: "MULTIPLE DISCIPLINES.",
+      subtitle: "Architecture, interiors, planning and turnkey construction brought together under one unified professional leadership.",
+      projectName: "Urban Lumina Townhouse",
+      location: "Greater Noida West",
       year: "2026",
-      category: "Neoclassical Estate",
-      image: "/projects/mansion_neoclassical.jpg",
-      description: "Symmetrical three-story architectural mansion featuring grand Corinthian columns, French windows, and bespoke Italian modular kitchen.",
+      category: "Contemporary Architecture & Turnkey",
+      image: "/projects/townhouse_night_hd.jpg",
+      description: "Bespoke 3-story modern architectural residence featuring vertical wooden louvers, 3D CNC acoustic stone wall, ambient cove lighting, and private master terraces.",
       gallery: [
-        "/projects/mansion_neoclassical.jpg",
-        "/projects/luxury_kitchen.jpg",
-        "/projects/townhouse_living.jpg"
+        "/projects/townhouse_night_hd.jpg",
+        "/projects/townhouse_living.jpg",
+        "/projects/townhouse_bedroom.jpg",
+        "/projects/luxury_kitchen.jpg"
       ]
     }
   ];
@@ -146,7 +146,7 @@ export default function HeroSlider() {
                 onClick={() => handleOpenProject(current)}
                 className="px-8 py-3.5 border border-white/40 hover:border-white bg-black/40 hover:bg-white text-white hover:text-black font-mono-num text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-300 flex items-center gap-3 group backdrop-blur-sm cursor-pointer"
               >
-                <span>EXPLORE PROJECTS</span>
+                <span>EXPLORE OUR WORK</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </button>
 

@@ -16,10 +16,13 @@ export default function Navbar() {
 
   const navLinks = [
     { label: 'HOME', href: '#home' },
-    { label: 'PROJECTS', href: '#projects' },
     { label: 'ABOUT', href: '#about' },
-    { label: 'STUDIO', href: '#3d-studio' },
-    { label: 'INSTAGRAM', href: '#instagram' },
+    { label: 'EXPERTISE', href: '#expertise' },
+    { label: 'APPROACH', href: '#approach' },
+    { label: 'PROJECTS', href: '#projects' },
+    { label: 'JOURNAL', href: '#journal' },
+    { label: 'FOUNDER', href: '#founder' },
+    { label: 'CLIENTS', href: '#clients' },
     { label: 'CONTACT', href: '#contact' },
   ];
 

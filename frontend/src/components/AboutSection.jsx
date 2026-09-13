@@ -1,43 +1,37 @@
 import React from 'react';
-import { Building2, Armchair, Compass, Sparkles, CheckCircle2, MapPin, ArrowRight } from 'lucide-react';
+import { Target, Compass, Heart, Eye, Award, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function AboutSection() {
-  const specializations = [
+  const philosophies = [
     {
-      title: 'ARCHITECTURE & 3D VISUALIZATION',
-      desc: 'Bespoke structural masterworks, climatic facades, and photorealistic 3D architectural renders.',
-      icon: Building2,
-      number: '01'
+      title: 'Design with Purpose.',
+      desc: 'We believe great architecture is not only about how a space looks. It is about how it works, feels and performs over time.',
+      icon: Target,
+      tag: 'FUNCTION & FORM'
     },
     {
-      title: 'LUXURY INTERIORS',
-      desc: 'Modular kitchens, master suites, ambient cove lighting, imported Italian marble, and bespoke millwork.',
-      icon: Armchair,
-      number: '02'
-    },
-    {
-      title: 'TURNKEY EXECUTION & CIVIL',
-      desc: 'Complete end-to-end execution from civil alterations and MEP to final styling with zero hassle.',
+      title: 'Build with Precision.',
+      desc: 'From foundation civil works to intricate joinery, technical excellence and coordinated execution turn design intent into enduring reality.',
       icon: Compass,
-      number: '03'
+      tag: 'TECHNICAL RIGOR'
     },
     {
-      title: 'VASTU SHASTRA HARMONY',
-      desc: 'Scientific spatial alignment ensuring positive natural energy flow, serenity, and family prosperity.',
-      icon: Sparkles,
-      number: '04'
+      title: 'Create with Emotion.',
+      desc: 'Spaces designed around people—crafting atmospheric environments that evoke comfort, character, and distinctive brand identity.',
+      icon: Heart,
+      tag: 'HUMAN-CENTRIC'
     }
   ];
 
   return (
     <section id="about" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-[#111215] overflow-hidden border-b border-white/5">
-      {/* Background Watermark matching go.arch screenshot */}
-      <div className="absolute top-12 left-20 watermark-text text-8xl md:text-[14rem] select-none opacity-20">
+      {/* Background Watermark */}
+      <div className="absolute top-12 left-20 watermark-text text-8xl md:text-[14rem] select-none opacity-20 pointer-events-none">
         About
       </div>
 
       <div className="relative max-w-7xl mx-auto z-10">
-        {/* Section Tagline matching "ABOUT GO.ARCH" */}
+        {/* Section Header */}
         <div className="flex items-center gap-3 mb-16">
           <span className="text-xs uppercase tracking-[0.35em] text-white font-mono-num font-semibold">
             ABOUT <span className="text-[#C5A880]">GENREV INTERIO</span>
@@ -45,142 +39,163 @@ export default function AboutSection() {
           <span className="w-16 h-[1px] bg-white/10"></span>
         </div>
 
-        {/* 3-Column Editorial Grid matching the screenshot */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-          {/* Left Column: Vision & Philosophy */}
-          <div className="lg:col-span-4 pr-0 lg:pr-6">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-editorial font-bold text-white leading-tight mb-6">
-              we create your legacy <br />
-              <span className="text-[#C5A880]">from concept to execution.</span>
-            </h3>
+        {/* Top Editorial Story Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-24">
+          
+          {/* Left Column: Vision & Philosophy Lead */}
+          <div className="lg:col-span-6 pr-0 lg:pr-6">
+            <span className="text-xs font-mono-num uppercase tracking-[0.25em] text-[#C5A880] mb-3 block">
+              MULTIDISCIPLINARY PRACTICE
+            </span>
             
-            <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed mb-6 font-light">
-              At <strong className="text-white font-medium">GENREV INTERIO PVT. LTD.</strong>, we transform your vision into thoughtfully designed spaces—where aesthetics, functionality, and comfort come together seamlessly. From concept to execution, every detail is crafted especially for you.
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white leading-tight mb-8">
+              We Create Spaces That <br />
+              <span className="text-[#C5A880]">Make a Difference.</span>
+            </h2>
+
+            <p className="text-neutral-300 text-sm md:text-base leading-relaxed mb-6 font-light">
+              <strong className="text-white font-medium">Genrev INTERIO Pvt. Ltd.</strong> is a multidisciplinary architecture, interior design, construction and planning company committed to creating distinctive spaces with purpose, character and lasting value.
             </p>
 
-            <div className="p-4 rounded-xl bg-white/[0.03] border border-[#C5A880]/20 mb-8">
-              <p className="text-xs italic text-[#E2E1DC] font-serif leading-relaxed">
-                "Site problem? We've got it covered. From design to execution, if any challenge comes up on site, our team steps in, solves it, and keeps the project moving."
-              </p>
-              <span className="text-[10px] font-mono-num uppercase tracking-wider text-[#C5A880] block mt-2">
-                — Genrev Interio On-Site Guarantee
-              </span>
-            </div>
+            <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed mb-6 font-light">
+              We bring together creative design, technical expertise and execution capability to transform ideas into meaningful built environments.
+            </p>
 
-            <div className="pt-4 border-t border-white/10 flex items-center gap-6 text-xs text-neutral-400 font-mono-num">
-              <div>
-                <span className="text-[#C5A880] font-bold block text-sm">150+</span>
-                Spaces Delivered
-              </div>
-              <div className="w-[1px] h-8 bg-white/10"></div>
-              <div>
-                <span className="text-[#C5A880] font-bold block text-sm">4.9 ★</span>
-                Verified Reviews
-              </div>
-            </div>
-          </div>
+            <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed mb-8 font-light">
+              From residences and luxury villas to corporate offices, commercial developments, retail spaces, industrial facilities and institutional projects, our approach combines design thinking with practical execution.
+            </p>
 
-          {/* Middle Column: Our Specialization */}
-          <div className="lg:col-span-4 lg:px-4 border-t lg:border-t-0 lg:border-l lg:border-r border-white/10 pt-8 lg:pt-0">
-            <div className="mb-6">
-              <span className="text-xs uppercase tracking-[0.25em] text-white font-semibold block mb-1">
-                our core specializations:
-              </span>
-              <span className="w-8 h-[2px] bg-[#C5A880] block"></span>
-            </div>
-
-            <div className="space-y-4">
-              {specializations.map((spec) => {
-                const Icon = spec.icon;
-                return (
-                  <div 
-                    key={spec.title}
-                    className="p-4 rounded-xl bg-[#16171D] hover:bg-[#1C1D24] border border-white/5 hover:border-[#C5A880]/40 transition duration-300 group"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="p-2.5 rounded-lg bg-white/5 group-hover:bg-[#C5A880]/20 text-[#C5A880] transition">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between">
-                          <h4 className="text-[11px] font-bold uppercase tracking-[0.18em] text-white group-hover:text-[#C5A880] transition">
-                            {spec.title}
-                          </h4>
-                          <span className="text-[10px] font-mono-num text-neutral-600">
-                            {spec.number}
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-neutral-400 mt-1.5 leading-relaxed">
-                          {spec.desc}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Right Column: Staggered Dual-Photo Architectural Showcase */}
-          <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-6">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="relative group overflow-hidden rounded-xl border border-white/10 shadow-xl h-56">
-                <img
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
-                  alt="Modern Architectural Villa"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-                  onError={(e) => {
-                    e.currentTarget.src = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                <div className="absolute bottom-3 left-3 right-3">
-                  <span className="text-[9px] uppercase font-mono-num tracking-widest text-[#C5A880]">
-                    STRUCTURE
-                  </span>
-                  <p className="text-[11px] text-white font-medium truncate">Spatial Mastery</p>
-                </div>
-              </div>
-
-              <div className="relative group overflow-hidden rounded-xl border border-white/10 shadow-xl h-56 mt-6">
-                <img
-                  src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
-                  alt="Bespoke Luxury Interior"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-                  onError={(e) => {
-                    e.currentTarget.src = 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                <div className="absolute bottom-3 left-3 right-3">
-                  <span className="text-[9px] uppercase font-mono-num tracking-widest text-[#C5A880]">
-                    INTERIORS
-                  </span>
-                  <p className="text-[11px] text-white font-medium truncate">Artisanal Finishes</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Manifesto Card */}
-            <div className="p-5 rounded-xl bg-gradient-to-br from-[#18191E] to-[#121316] border border-white/10 flex items-center justify-between">
-              <div>
-                <span className="text-xs uppercase tracking-wider text-white font-semibold block">
-                  Have a space in mind?
+            {/* Principal Architect Callout Card */}
+            <div className="p-5 rounded-2xl bg-gradient-to-r from-[#181920] to-[#121316] border border-[#C5A880]/30 shadow-xl">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 rounded-full bg-[#C5A880]"></span>
+                <span className="text-[10px] font-mono-num uppercase tracking-[0.2em] text-[#C5A880] font-semibold">
+                  PRACTICE LEADERSHIP
                 </span>
-                <p className="text-xs text-neutral-400 mt-0.5">
-                  Schedule an in-person atelier consultation
+              </div>
+              <p className="text-xs md:text-sm text-neutral-200 leading-relaxed">
+                Led by <strong className="text-white font-semibold">Ar. Abhishek Singh Chauhan</strong> — Architect & Urban and Regional Planner, Genrev brings together architectural understanding, spatial planning and project execution to deliver solutions that respond to the client, context and purpose of every project.
+              </p>
+              <div className="mt-3 pt-3 border-t border-white/5 flex items-center justify-between">
+                <a 
+                  href="#founder" 
+                  className="text-[11px] font-mono-num uppercase tracking-wider text-[#C5A880] hover:text-white transition flex items-center gap-1.5"
+                >
+                  <span>Explore Founder Profile</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Architectural Imagery & Philosophy Cards */}
+          <div className="lg:col-span-6 space-y-6">
+            
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl h-80 w-full group">
+              <img
+                src="/projects/townhouse_living.jpg"
+                alt="Genrev Interio Luxury Architecture & Interior"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0E0F12] via-transparent to-black/30" />
+              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs font-mono-num text-white">
+                <div>
+                  <p className="font-semibold uppercase tracking-wider">Purposeful • Refined • Enduring</p>
+                  <p className="text-[10px] text-neutral-400">Delhi NCR • Greater Noida • Kanpur</p>
+                </div>
+                <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[10px] text-[#C5A880]">
+                  Turnkey Practice
+                </span>
+              </div>
+            </div>
+
+            {/* Vision & Mission Split Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#C5A880]/30 transition">
+                <span className="text-[10px] font-mono-num uppercase tracking-[0.25em] text-[#C5A880] block mb-2 font-semibold">
+                  OUR VISION
+                </span>
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                  To Shape Better Spaces. To Create Lasting Value.
+                </h4>
+                <p className="text-xs text-neutral-400 font-light leading-relaxed">
+                  Creating environments that are innovative, human-centred, sustainable and relevant to the future.
                 </p>
               </div>
-              <a
-                href="#contact"
-                className="w-10 h-10 rounded-full bg-[#C5A880] text-black flex items-center justify-center hover:bg-[#DFC49F] transition flex-shrink-0 cursor-pointer shadow-lg shadow-[#C5A880]/20"
-                aria-label="Book Consultation"
-              >
-                <ArrowRight className="w-4 h-4" />
-              </a>
+
+              <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#C5A880]/30 transition">
+                <span className="text-[10px] font-mono-num uppercase tracking-[0.25em] text-[#C5A880] block mb-2 font-semibold">
+                  OUR MISSION
+                </span>
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-2">
+                  Meaningful Spaces Built with Passion.
+                </h4>
+                <ul className="text-xs text-neutral-400 font-light space-y-1">
+                  <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 text-[#C5A880]" /> Thoughtful Design</li>
+                  <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 text-[#C5A880]" /> Technical Excellence</li>
+                  <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 text-[#C5A880]" /> Responsible Execution</li>
+                </ul>
+              </div>
             </div>
+
+          </div>
+
+        </div>
+
+        {/* Our Philosophy: 3 Core Pillars */}
+        <div>
+          <div className="text-center max-w-xl mx-auto mb-12">
+            <span className="text-[10px] font-mono-num uppercase tracking-[0.3em] text-[#C5A880] font-semibold block mb-2">
+              FOUNDATIONAL VALUES
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-editorial font-bold text-white uppercase tracking-wider">
+              OUR PHILOSOPHY
+            </h3>
+            <span className="w-12 h-[2px] bg-[#C5A880] mx-auto block mt-3"></span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {philosophies.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={idx}
+                  className="p-8 rounded-2xl bg-[#15161C]/90 border border-white/5 hover:border-[#C5A880]/40 transition-all duration-300 group hover:-translate-y-1 shadow-xl flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="w-12 h-12 rounded-xl bg-white/[0.04] group-hover:bg-[#C5A880]/15 flex items-center justify-center text-[#C5A880] transition">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <span className="text-[10px] font-mono-num text-neutral-500 tracking-widest uppercase">
+                        0{idx + 1}
+                      </span>
+                    </div>
+
+                    <span className="text-[10px] font-mono-num text-[#C5A880] uppercase tracking-widest block mb-2 font-medium">
+                      {item.tag}
+                    </span>
+
+                    <h4 className="text-xl font-editorial font-bold text-white mb-3 group-hover:text-[#DFC49F] transition-colors">
+                      {item.title}
+                    </h4>
+
+                    <p className="text-xs sm:text-sm text-neutral-400 font-light leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-white/5">
+                    <span className="text-[10px] font-mono-num text-neutral-500 uppercase tracking-wider">
+                      Genrev Core Standard
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
+
       </div>
     </section>
   );

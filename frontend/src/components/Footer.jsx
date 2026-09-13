@@ -18,7 +18,7 @@ export default function Footer() {
 
         {/* Center Notice with Social Links */}
         <div className="flex flex-col sm:flex-row items-center gap-4 text-center text-xs font-mono-num text-neutral-400">
-          <span>Gaur City Mall, Greater Noida West & Panki, Kanpur</span>
+          <span>Registered Office: C-587, Panki, Kanpur Nagar, UP 208020</span>
           <span className="hidden sm:inline text-neutral-700">•</span>
           <div className="flex items-center gap-3">
             <a
@@ -45,9 +45,14 @@ export default function Footer() {
 
         {/* Right Info & Back to Top */}
         <div className="flex items-center gap-6">
-          <span className="text-xs font-mono-num text-neutral-500">
-            © 2026 GENREV INTERIO PVT. LTD.
-          </span>
+          <div className="text-right text-xs font-mono-num">
+            <span className="text-neutral-400 block font-medium">
+              © 2026 Genrev INTERIO Pvt. Ltd. All Rights Reserved.
+            </span>
+            <span className="text-[10px] text-neutral-500 uppercase tracking-widest block">
+              Generating Revolution
+            </span>
+          </div>
 
           <button
             onClick={scrollToTop}

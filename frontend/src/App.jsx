@@ -5,8 +5,13 @@ import Navbar from './components/Navbar';
 import LeftRail from './components/LeftRail';
 import HeroSlider from './components/HeroSlider';
 import AboutSection from './components/AboutSection';
+import LogoStorySection from './components/LogoStorySection';
+import ExpertiseSection from './components/ExpertiseSection';
+import ApproachSection from './components/ApproachSection';
 import ProjectsAccordion from './components/ProjectsAccordion';
 import ProjectGrid from './components/ProjectGrid';
+import JournalSection from './components/JournalSection';
+import FounderSection from './components/FounderSection';
 import ThreeStudioViewer from './components/ThreeStudioViewer';
 import StatsSection from './components/StatsSection';
 import InstagramFeedSection from './components/InstagramFeedSection';
@@ -32,7 +37,16 @@ function MainLayout() {
         {/* 2. About Genrev Interio Section */}
         <AboutSection />
 
-        {/* 3. Our Projects Section */}
+        {/* 3. The Meaning Behind Our Logo (Brand Philosophy & Origin) */}
+        <LogoStorySection />
+
+        {/* 4. Our Expertise - 4 Disciplinary Pillars */}
+        <ExpertiseSection />
+
+        {/* 5. Our Approach (Roadmap, Why Genrev, Design Language) */}
+        <ApproachSection />
+
+        {/* 6. Our Projects Section */}
         <section id="projects" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 overflow-hidden bg-[#111215]">
           {/* Background Watermark matching go.arch screenshot */}
           <div className="absolute top-12 left-16 watermark-text text-8xl md:text-[14rem] select-none opacity-20">
@@ -43,18 +57,27 @@ function MainLayout() {
             {/* Section Header */}
             <div className="flex flex-col items-center justify-center text-center mb-16">
               <span className="text-xs uppercase tracking-[0.35em] font-mono-num font-semibold mb-2 text-white">
-                OUR <span className="text-[#C5A880]">PROJECTS</span>
+                SELECTED <span className="text-[#C5A880]">WORK</span>
               </span>
+              <p className="text-xs md:text-sm text-neutral-400 font-light max-w-xl mb-4">
+                Our portfolio represents a diverse range of design and development experiences across residential, luxury villas, corporate, commercial, retail, industrial, institutional, and turnkey interiors.
+              </p>
               <span className="w-12 h-[2px] bg-[#C5A880]"></span>
             </div>
 
-            {/* 4-Panel Vertical Expanding Accordion matching screenshot */}
+            {/* 4-Panel Vertical Expanding Accordion featuring Resolüt Partners & Signature Estates */}
             <ProjectsAccordion />
 
-            {/* 3-Column Filterable Project Grid */}
+            {/* Sector Filterable Project Grid */}
             <ProjectGrid />
           </div>
         </section>
+
+        {/* 7. The Genrev Journal: Perspectives on Architecture & Built Environment */}
+        <JournalSection />
+
+        {/* 8. Founder: Principal Architect & Urban Planner Profile */}
+        <FounderSection />
 
         {/* 4. Interactive 3D Architectural Studio */}
         <ThreeStudioViewer />

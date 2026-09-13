@@ -5,6 +5,22 @@ import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
 const defaultPanels = [
   {
     id: 'p1',
+    title: 'RESOLÜT PARTNERS HQ',
+    category: 'FEATURED CORPORATE INTERIOR',
+    location: 'Corporate Law Firm, Delhi NCR',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=85',
+    desc: 'A contemporary corporate interior designed around professionalism, sophistication, functionality and modern legal practice.'
+  },
+  {
+    id: 'p2',
+    title: 'ROYAL ROMANESQUE VILLA',
+    category: 'CLASSICAL VILLA ARCHITECTURE',
+    location: 'Noida Expressway',
+    image: '/projects/villa_facade.jpg',
+    desc: 'Palatial 2-story classical villa featuring grand fluted Roman porticos, balustrades, and expansive manicured front lawn.'
+  },
+  {
+    id: 'p3',
     title: 'URBAN LUMINA TOWNHOUSE',
     category: 'TURNKEY ARCHITECTURE',
     location: 'Greater Noida West, Delhi NCR',
@@ -12,28 +28,12 @@ const defaultPanels = [
     desc: 'Bespoke 3-story luxury residence featuring vertical wooden louvers, 3D CNC stone facade, and ambient cove lighting.'
   },
   {
-    id: 'p2',
-    title: 'ROYAL ROMANESQUE VILLA',
-    category: 'CLASSICAL ARCHITECTURE',
-    location: 'Noida Expressway',
-    image: '/projects/villa_facade.jpg',
-    desc: 'Palatial 2-story classical villa featuring grand fluted Roman porticos, balustrades, and expansive manicured front lawn.'
-  },
-  {
-    id: 'p3',
-    title: 'DOUBLE-HEIGHT DRAWING HALL',
-    category: 'LUXURY INTERIORS',
-    location: 'Greater Noida West',
-    image: '/projects/villa_living.jpg',
-    desc: 'Monumental crystal chandelier, classical wall moldings, and beige Italian marble inlay flooring.'
-  },
-  {
     id: 'p4',
-    title: "CHEF'S TURNKEY MODULAR KITCHEN",
-    category: 'TURNKEY INTERIORS',
-    location: 'Sector 78, Noida',
-    image: '/projects/luxury_kitchen.jpg',
-    desc: 'Calacatta quartz waterfall island, handleless matte charcoal cabinetry, and warm fluted timber accents.'
+    title: 'ELDECO GRAND TOWNSHIP',
+    category: 'DEVELOPER MASTER PLANNING',
+    location: 'Greater Noida',
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=85',
+    desc: 'Grand residential planning, contemporary facade rhythms, pedestrian green belts, and community club architecture.'
   }
 ];
 
