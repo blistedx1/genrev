@@ -10,7 +10,7 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="relative py-24 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-[#0E0F12] border-t border-b border-white/5 overflow-hidden">
+    <section className="relative py-24 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-surface border-t border-b border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Giant textured metallic number matching the iconic go.arch design */}
         <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-12 mb-16 pb-16 border-b border-white/10">
@@ -32,7 +32,7 @@ export default function StatsSection() {
             <div className="max-w-xs">
               <h3 className="text-xl sm:text-2xl font-editorial font-bold text-white uppercase tracking-wider leading-snug">
                 YEARS OF TURNKEY EXCELLENCE <br />
-                <span className="text-[#C5A880]">IN DELHI NCR & NOIDA</span>
+                <span className="text-gold">IN DELHI NCR & NOIDA</span>
               </h3>
               <p className="text-xs text-neutral-400 mt-2 leading-relaxed">
                 Transforming residential and commercial spaces into living art with Vastu precision, master craftsmanship, and transparent turnkey execution.
@@ -42,7 +42,7 @@ export default function StatsSection() {
 
           <div className="grid grid-cols-2 gap-6 w-full lg:w-auto">
             <div className="p-6 rounded-xl bg-white/5 border border-white/5">
-              <span className="text-3xl font-bold font-mono-num text-[#C5A880]">150+</span>
+              <span className="text-3xl font-bold font-mono-num text-gold">150+</span>
               <p className="text-[11px] uppercase tracking-wider text-neutral-400 mt-1">Delivered Projects</p>
             </div>
             <div className="p-6 rounded-xl bg-white/5 border border-white/5">

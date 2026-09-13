@@ -77,7 +77,7 @@ export default function ExpertiseSection() {
   ];
 
   return (
-    <section id="expertise" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-[#0E0F12] overflow-hidden border-b border-white/5">
+    <section id="expertise" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-surface overflow-hidden border-b border-white/5">
       {/* Background Watermark */}
       <div className="absolute top-10 right-16 watermark-text text-8xl md:text-[14rem] select-none opacity-20 pointer-events-none">
         Expertise
@@ -87,7 +87,7 @@ export default function ExpertiseSection() {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 pb-8 border-b border-white/10">
           <div>
-            <span className="text-xs uppercase tracking-[0.35em] text-[#C5A880] font-mono-num font-semibold block mb-2">
+            <span className="text-xs uppercase tracking-[0.35em] text-gold font-mono-num font-semibold block mb-2">
               DISCIPLINARY EXCELLENCE
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white uppercase tracking-wide">
@@ -110,14 +110,14 @@ export default function ExpertiseSection() {
                 onMouseEnter={() => setActiveTab(idx)}
                 className={`p-6 sm:p-8 rounded-2xl transition-all duration-500 flex flex-col justify-between border cursor-pointer group ${
                   isHovered
-                    ? 'bg-[#181922] border-[#C5A880]/50 shadow-2xl -translate-y-1'
-                    : 'bg-[#131419] border-white/5 hover:border-white/20'
+                    ? 'bg-dark-elevated border-gold/50 shadow-2xl -translate-y-1'
+                    : 'bg-card-bg border-white/5 hover:border-white/20'
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
                     <div className={`p-3 rounded-xl transition-colors duration-300 ${
-                      isHovered ? 'bg-[#C5A880] text-black' : 'bg-white/5 text-[#C5A880]'
+                      isHovered ? 'bg-gold text-black' : 'bg-white/5 text-gold'
                     }`}>
                       <Icon className="w-6 h-6" />
                     </div>

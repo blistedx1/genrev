@@ -98,19 +98,19 @@ export default function ApproachSection() {
             return (
               <div
                 key={step.num}
-                className="p-8 rounded-2xl bg-[#16171E] border border-white/5 hover:border-[#C5A880]/40 transition-all duration-300 group hover:-translate-y-1 shadow-lg relative overflow-hidden flex flex-col justify-between"
+                className="p-8 rounded-2xl bg-card-bg border border-white/5 hover:border-gold/40 transition-all duration-300 group hover:-translate-y-1 shadow-lg relative overflow-hidden flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-2xl font-mono-num font-bold text-[#C5A880]/80 group-hover:text-[#C5A880] transition-colors">
+                    <span className="text-2xl font-mono-num font-bold text-gold/80 group-hover:text-gold transition-colors">
                       {step.num}
                     </span>
-                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] group-hover:bg-[#C5A880]/20 flex items-center justify-center text-[#C5A880] transition">
+                    <div className="w-10 h-10 rounded-xl bg-white/[0.04] group-hover:bg-gold/20 flex items-center justify-center text-gold transition">
                       <Icon className="w-5 h-5" />
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-editorial font-bold text-white uppercase tracking-wider mb-3 group-hover:text-[#DFC49F] transition-colors">
+                  <h3 className="text-lg font-editorial font-bold text-white uppercase tracking-wider mb-3 group-hover:text-gold-light transition-colors">
                     {step.title}
                   </h3>
 

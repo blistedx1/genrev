@@ -9,7 +9,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#0B0C0E] border-t border-white/5 py-12 px-6 sm:px-12 lg:pl-36 lg:pr-16 text-neutral-400">
+    <footer className="relative bg-dark-bg border-t border-white/5 py-12 px-6 sm:px-12 lg:pl-36 lg:pr-16 text-neutral-400">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
         {/* Brand with Official Tri-Color Emblem */}
         <div>
@@ -25,7 +25,7 @@ export default function Footer() {
               href="https://www.instagram.com/genrev.interio.pvt.ltd"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#C5A880] hover:text-white flex items-center gap-1 transition"
+              className="text-gold hover:text-white flex items-center gap-1 transition"
             >
               <InstagramIcon className="w-3.5 h-3.5" />
               <span>@genrev.interio.pvt.ltd</span>
@@ -56,7 +56,7 @@ export default function Footer() {
 
           <button
             onClick={scrollToTop}
-            className="w-9 h-9 rounded-full bg-white/5 hover:bg-[#C5A880] hover:text-black text-neutral-400 flex items-center justify-center transition border border-white/10 cursor-pointer"
+            className="w-9 h-9 rounded-full bg-white/5 hover:bg-gold hover:text-black text-neutral-400 flex items-center justify-center transition border border-white/10 cursor-pointer"
             title="Back to Top"
             aria-label="Back to Top"
           >

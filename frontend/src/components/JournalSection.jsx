@@ -219,7 +219,7 @@ export default function JournalSection() {
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-full text-[11px] font-mono-num uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-[#C5A880] text-[#111215] font-semibold shadow-lg shadow-[#C5A880]/20'
+                  ? 'bg-gold text-dark-bg font-semibold shadow-lg shadow-gold/20'
                   : 'bg-white/[0.03] text-neutral-400 hover:text-white hover:bg-white/[0.08] border border-white/5'
               }`}
             >
@@ -234,7 +234,7 @@ export default function JournalSection() {
             <article
               key={article.id}
               onClick={() => setActiveArticle(article)}
-              className="p-6 rounded-2xl bg-[#14151B] border border-white/5 hover:border-[#C5A880]/40 transition-all duration-500 cursor-pointer group shadow-xl flex flex-col justify-between"
+              className="p-6 rounded-2xl bg-card-bg border border-white/5 hover:border-gold/40 transition-all duration-500 cursor-pointer group shadow-xl flex flex-col justify-between"
             >
               <div>
                 {/* Thumbnail Image with Zoom */}
@@ -245,11 +245,11 @@ export default function JournalSection() {
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#14151B] via-transparent to-black/30" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card-bg via-transparent to-black/30" />
                   
                   {/* Category Tag Badge */}
                   <div className="absolute top-3 left-3">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-mono-num uppercase tracking-widest bg-black/80 backdrop-blur-md text-[#C5A880] border border-white/10 font-medium">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-mono-num uppercase tracking-widest bg-black/80 backdrop-blur-md text-gold border border-white/10 font-medium">
                       {article.category}
                     </span>
                   </div>

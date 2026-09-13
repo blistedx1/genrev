@@ -118,10 +118,10 @@ export default function ContactSection() {
             </div>
 
             {/* Regional Network & Branch Offices */}
-            <div className="p-5 rounded-2xl bg-[#14151B] border border-white/5 space-y-3 shadow-lg">
+            <div className="p-5 rounded-2xl bg-card-bg border border-white/5 space-y-3 shadow-lg">
               <div className="flex items-center justify-between border-b border-white/5 pb-2.5">
-                <span className="text-[10px] font-mono-num uppercase tracking-[0.2em] text-[#C5A880] font-semibold flex items-center gap-1.5">
-                  <Building2 className="w-3.5 h-3.5 text-[#C5A880]" />
+                <span className="text-[10px] font-mono-num uppercase tracking-[0.2em] text-gold font-semibold flex items-center gap-1.5">
+                  <Building2 className="w-3.5 h-3.5 text-gold" />
                   <span>BRANCH OFFICES & REGIONAL NETWORK</span>
                 </span>
                 <span className="text-[9px] font-mono-num text-neutral-500 uppercase">North India</span>
@@ -181,7 +181,7 @@ export default function ContactSection() {
 
           {/* Right Column: Contact Form - matching layout of go.arch screenshot */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-2xl bg-[#16171D] border border-white/10 shadow-2xl">
+            <div className="p-8 sm:p-10 rounded-2xl bg-card-bg border border-white/10 shadow-2xl">
               {status && (
                 <div
                   className={`p-4 rounded-xl mb-6 flex items-start gap-3 text-xs ${
@@ -212,7 +212,7 @@ export default function ContactSection() {
                       placeholder="e.g. Johnathan Vance"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg bg-[#111215] border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-[#C5A880] text-xs transition"
+                      className="w-full px-4 py-3 rounded-lg bg-dark-bg border border-white/10 text-white placeholder-neutral-600 focus:outline-none focus:border-gold text-xs transition"
                     />
                   </div>
 

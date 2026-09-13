@@ -94,7 +94,7 @@ export default function HeroSlider() {
   };
 
   return (
-    <section id="home" className="relative bg-[#0C0D10] text-[#E5E5E2] overflow-hidden select-none">
+    <section id="home" className="relative bg-dark-bg text-[#E5E5E2] overflow-hidden select-none">
       
       {/* Top Hero Section */}
       <div className="relative min-h-[92vh] sm:min-h-screen w-full flex items-center pt-28 pb-16 px-6 sm:px-12 lg:px-16">
@@ -109,8 +109,8 @@ export default function HeroSlider() {
           />
 
           {/* Dark Vignette Gradients for Pure Architectural Look & Headline Clarity */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0C0D10] via-[#0C0D10]/80 sm:via-[#0C0D10]/60 to-transparent w-full lg:w-3/5" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0C0D10] via-transparent to-[#0C0D10]/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-dark-bg via-dark-bg/80 sm:via-dark-bg/60 to-transparent w-full lg:w-3/5" />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-dark-bg/50" />
         </div>
 
         {/* Hero Content Container */}
@@ -285,7 +285,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Bottom Architectural Callout Banner */}
-      <div className="relative border-t border-white/10 bg-[#090A0D]">
+      <div className="relative border-t border-white/10 bg-dark-surface">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           <div className="lg:col-span-8 space-y-4">

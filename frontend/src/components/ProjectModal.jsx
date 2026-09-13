@@ -37,13 +37,13 @@ export default function ProjectModal() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 lg:p-8 bg-black/85 backdrop-blur-xl animate-fade-in overflow-y-auto">
       <div 
-        className="relative w-full max-w-5xl my-auto bg-[#141519] border border-white/10 rounded-2xl overflow-hidden shadow-2xl text-white max-h-[92vh] flex flex-col"
+        className="relative w-full max-w-5xl my-auto bg-dark-surface border border-white/10 rounded-2xl overflow-hidden shadow-2xl text-white max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#111215]/90 backdrop-blur-md">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-dark-bg/90 backdrop-blur-md">
           <div className="flex items-center gap-3">
-            <span className="px-3 py-1 rounded-full text-[10px] font-mono-num uppercase tracking-widest bg-[#C5A880] text-black font-bold">
+            <span className="px-3 py-1 rounded-full text-[10px] font-mono-num uppercase tracking-widest bg-gold text-black font-bold">
               {selectedProject.category}
             </span>
             <h2 className="text-sm sm:text-base font-editorial font-bold text-white truncate max-w-md">
@@ -53,7 +53,7 @@ export default function ProjectModal() {
 
           <button
             onClick={() => setSelectedProject(null)}
-            className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#C5A880] hover:text-black text-white flex items-center justify-center transition border border-white/10 cursor-pointer"
+            className="w-8 h-8 rounded-full bg-white/5 hover:bg-gold hover:text-black text-white flex items-center justify-center transition border border-white/10 cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-4 h-4" />

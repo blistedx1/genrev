@@ -33,7 +33,7 @@ export default function FounderSection() {
   ];
 
   return (
-    <section id="founder" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-[#0C0D10] overflow-hidden border-b border-white/5">
+    <section id="founder" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-bg overflow-hidden border-b border-white/5">
       {/* Background Watermark */}
       <div className="absolute top-12 right-10 watermark-text text-8xl md:text-[14rem] select-none opacity-20 pointer-events-none">
         Architect
@@ -43,7 +43,7 @@ export default function FounderSection() {
         
         {/* Section Tag */}
         <div className="flex items-center gap-3 mb-16">
-          <span className="text-xs uppercase tracking-[0.35em] text-[#C5A880] font-mono-num font-semibold">
+          <span className="text-xs uppercase tracking-[0.35em] text-gold font-mono-num font-semibold">
             PRACTICE LEADERSHIP
           </span>
           <span className="w-16 h-[1px] bg-white/10"></span>
@@ -53,10 +53,10 @@ export default function FounderSection() {
           
           {/* Left Column: Portrait Monogram & Credentials Card */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-[#181920] to-[#121316] border border-[#C5A880]/30 p-8 sm:p-10 shadow-2xl">
+            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-card-bg to-dark-surface border border-gold/30 p-8 sm:p-10 shadow-2xl">
               
               {/* Gold Framing Ribbon */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#C5A880]/10 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gold/10 rounded-full blur-2xl pointer-events-none" />
 
               {/* Architectural Seal / Monogram */}
               <div className="w-20 h-20 rounded-2xl bg-black/60 border border-[#C5A880]/50 flex items-center justify-center mb-6 shadow-inner">

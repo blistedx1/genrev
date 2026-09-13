@@ -67,7 +67,7 @@ export default function InstagramFeedSection() {
   ];
 
   return (
-    <section id="instagram" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-[#0E0F12] border-b border-white/5 overflow-hidden">
+    <section id="instagram" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-surface border-b border-white/5 overflow-hidden">
       {/* Background Watermark */}
       <div className="absolute top-10 right-10 watermark-text text-8xl md:text-[14rem] select-none opacity-15">
         Social

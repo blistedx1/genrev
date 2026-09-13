@@ -27,7 +27,7 @@ export default function LogoStorySection() {
   ];
 
   return (
-    <section id="brand-story" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-[#0B0C0E] overflow-hidden border-b border-white/5">
+    <section id="brand-story" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-bg overflow-hidden border-b border-white/5">
       {/* Background Watermark */}
       <div className="absolute top-10 right-10 watermark-text text-8xl md:text-[14rem] select-none opacity-15 pointer-events-none">
         Genrev
@@ -37,16 +37,16 @@ export default function LogoStorySection() {
         
         {/* Section Header */}
         <div className="flex flex-col items-center justify-center text-center mb-16">
-          <span className="text-xs uppercase tracking-[0.35em] text-[#C5A880] font-mono-num font-semibold mb-2">
+          <span className="text-xs uppercase tracking-[0.35em] text-gold font-mono-num font-semibold mb-2">
             BRAND ORIGIN & PHILOSOPHY
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white uppercase tracking-wider mb-3">
             THE STORY BEHIND GENREV
           </h2>
-          <p className="text-sm md:text-base font-mono-num uppercase tracking-[0.2em] text-[#C5A880] font-medium">
+          <p className="text-sm md:text-base font-mono-num uppercase tracking-[0.2em] text-gold font-medium">
             Generating Revolution
           </p>
-          <span className="w-12 h-[2px] bg-[#C5A880] mt-4"></span>
+          <span className="w-12 h-[2px] bg-gold mt-4"></span>
         </div>
 
         {/* Lead Narrative & Glowing Insignia */}

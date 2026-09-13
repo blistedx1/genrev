@@ -64,8 +64,8 @@ export default function ThreeStudioViewer() {
 
     // Scene
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x131418);
-    scene.fog = new THREE.FogExp2(0x131418, 0.04);
+    scene.background = new THREE.Color(0x111215);
+    scene.fog = new THREE.FogExp2(0x111215, 0.04);
 
     // Camera
     const camera = new THREE.PerspectiveCamera(
@@ -480,24 +480,24 @@ export default function ThreeStudioViewer() {
         </div>
 
         {/* 3D Canvas Viewport + Control HUD */}
-        <div className="relative w-full h-[580px] md:h-[640px] rounded-2xl overflow-hidden border border-white/10 bg-[#131418] shadow-2xl">
+        <div className="relative w-full h-[580px] md:h-[640px] rounded-2xl overflow-hidden border border-white/10 bg-dark-bg shadow-2xl">
           {/* Three.js Container */}
           <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
           {/* Floating HUD Top Bar */}
           <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-4 pointer-events-none">
-            <div className="pointer-events-auto flex items-center gap-2 bg-[#18191E]/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-xs">
+            <div className="pointer-events-auto flex items-center gap-2 bg-card-bg/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span className="text-white font-mono-num font-medium">REALTIME WEBGL ENGINE</span>
               <span className="text-neutral-400">| 60 FPS</span>
             </div>
 
             {/* Quick Actions */}
-            <div className="pointer-events-auto flex items-center gap-2 bg-[#18191E]/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+            <div className="pointer-events-auto flex items-center gap-2 bg-card-bg/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
               <button
                 onClick={() => setAutoRotate(!autoRotate)}
                 className={`px-3 py-1 text-xs rounded-full transition flex items-center gap-1.5 ${
-                  autoRotate ? 'bg-[#C5A880] text-black font-medium' : 'text-neutral-400 hover:text-white'
+                  autoRotate ? 'bg-gold text-black font-medium' : 'text-neutral-400 hover:text-white'
                 }`}
                 title="Toggle Auto Rotation"
               >
@@ -508,7 +508,7 @@ export default function ThreeStudioViewer() {
               <button
                 onClick={() => setWireframeMode(!wireframeMode)}
                 className={`px-3 py-1 text-xs rounded-full transition flex items-center gap-1.5 ${
-                  wireframeMode ? 'bg-[#C5A880] text-black font-medium' : 'text-neutral-400 hover:text-white'
+                  wireframeMode ? 'bg-gold text-black font-medium' : 'text-neutral-400 hover:text-white'
                 }`}
                 title="Toggle Wireframe Blueprint"
               >
@@ -521,7 +521,7 @@ export default function ThreeStudioViewer() {
           {/* Floating HUD Bottom Toolbar */}
           <div className="absolute bottom-4 left-4 right-4 flex flex-col md:flex-row items-center justify-between gap-4 pointer-events-none">
             {/* Lighting Modes */}
-            <div className="pointer-events-auto flex items-center gap-1 bg-[#18191E]/90 backdrop-blur-md p-1.5 rounded-xl border border-white/10">
+            <div className="pointer-events-auto flex items-center gap-1 bg-card-bg/90 backdrop-blur-md p-1.5 rounded-xl border border-white/10">
               <span className="text-[11px] uppercase tracking-wider text-neutral-400 px-3 font-mono-num">Lighting:</span>
               <button
                 onClick={() => setLightingMode('day')}
@@ -535,10 +535,10 @@ export default function ThreeStudioViewer() {
               <button
                 onClick={() => setLightingMode('dusk')}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition ${
-                  lightingMode === 'dusk' ? 'bg-[#C5A880]/20 text-[#DFC49F] border border-[#C5A880]/30' : 'text-neutral-400 hover:text-white'
+                  lightingMode === 'dusk' ? 'bg-gold/20 text-gold-light border border-gold/30' : 'text-neutral-400 hover:text-white'
                 }`}
               >
-                <Sunset className="w-3.5 h-3.5 text-[#C5A880]" />
+                <Sunset className="w-3.5 h-3.5 text-gold" />
                 Golden Dusk
               </button>
               <button

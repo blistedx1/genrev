@@ -97,7 +97,7 @@ export default function ClientsAndReviews() {
           {filteredClients.map((client, idx) => (
             <div
               key={client.name + idx}
-              className="p-5 rounded-xl bg-[#16171C]/80 hover:bg-[#1C1D24] border border-white/5 hover:border-[#C5A880]/40 transition-all duration-300 flex flex-col justify-between group shadow-lg"
+              className="p-5 rounded-xl bg-card-bg/80 hover:bg-dark-elevated border border-white/5 hover:border-gold/40 transition-all duration-300 flex flex-col justify-between group shadow-lg"
             >
               <div>
                 {/* Header: Geometric Emblem + Category Icon */}
@@ -152,7 +152,7 @@ export default function ClientsAndReviews() {
         <div className="flex justify-center mb-20">
           <a
             href="#contact"
-            className="px-8 py-3.5 rounded-full bg-[#C5A880] hover:bg-[#DFC49F] text-[#111215] font-semibold text-xs tracking-widest uppercase transition-all duration-300 flex items-center gap-3 shadow-xl shadow-[#C5A880]/20 group"
+            className="px-8 py-3.5 rounded-full bg-gold hover:bg-gold-light text-dark-bg font-semibold text-xs tracking-widest uppercase transition-all duration-300 flex items-center gap-3 shadow-xl shadow-gold/20 group"
           >
             <span>WORK TOGETHER</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -161,8 +161,8 @@ export default function ClientsAndReviews() {
 
         {/* Client Testimonial Showcase */}
         {currentReview && (
-          <div className="max-w-4xl mx-auto p-8 sm:p-12 rounded-2xl bg-gradient-to-b from-[#18191E] to-[#121316] border border-white/10 relative shadow-2xl">
-            <Quote className="absolute top-6 right-8 w-12 h-12 text-[#C5A880]/15" />
+          <div className="max-w-4xl mx-auto p-8 sm:p-12 rounded-2xl bg-gradient-to-b from-card-bg to-dark-surface border border-white/10 relative shadow-2xl">
+            <Quote className="absolute top-6 right-8 w-12 h-12 text-gold/15" />
             
             <div className="flex items-center gap-1 text-amber-400 mb-6">
               {[...Array(currentReview.rating || 5)].map((_, i) => (
