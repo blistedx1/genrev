@@ -49,9 +49,10 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="relative transition-colors duration-200 py-1 uppercase tracking-[0.25em] hover:text-white"
+              className="relative transition-colors duration-300 py-1 uppercase tracking-[0.25em] text-neutral-300 hover:text-white group"
             >
-              {link.label}
+              <span>{link.label}</span>
+              <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gold group-hover:w-full transition-all duration-300 ease-out" />
             </a>
           ))}
         </nav>
@@ -62,7 +63,7 @@ export default function Navbar() {
           {/* Phone Action Button */}
           <a
             href="tel:+919958323002"
-            className="flex items-center gap-2 text-xs font-mono-num transition tracking-wider px-3.5 py-1.5 rounded-full border bg-white/[0.04] text-neutral-300 border-white/10 hover:border-white/30 hover:bg-white/10 hover:text-white"
+            className="flex items-center gap-2 text-xs font-mono-num transition-all duration-200 tracking-wider px-3.5 py-1.5 rounded-full border bg-white/[0.04] text-neutral-300 border-white/10 hover:border-gold/40 hover:bg-white/10 hover:text-white hover:scale-[1.02]"
           >
             <Phone className="w-3.5 h-3.5 text-[#E52E2D]" />
             <span>+91 99583 23002</span>
@@ -71,7 +72,7 @@ export default function Navbar() {
           {/* Inquire Action Button */}
           <a
             href="#contact"
-            className="px-4 py-1.5 rounded-full text-[11px] font-mono-num font-semibold tracking-widest uppercase transition duration-300 flex items-center gap-1.5 shadow-sm border border-white/25 hover:border-white bg-white/10 hover:bg-white text-white hover:text-black"
+            className="px-4 py-1.5 rounded-full text-[11px] font-mono-num font-semibold tracking-widest uppercase transition-all duration-300 flex items-center gap-1.5 shadow-sm border border-white/25 hover:border-gold bg-white/10 hover:bg-gold text-white hover:text-black hover:scale-[1.04] active:scale-[0.98]"
           >
             <span>INQUIRE</span>
             <ArrowUpRight className="w-3 h-3" />
