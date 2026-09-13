@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BookOpen, Calendar, Clock, ArrowRight, User, Tag, Sparkles, X, ChevronRight, Share2 } from 'lucide-react';
+import LazyImage from './LazyImage';
 
 export const journalArticles = [
   {
@@ -237,27 +238,27 @@ export default function JournalSection() {
               className="p-6 rounded-2xl bg-card-bg border border-white/5 hover:border-gold/40 transition-all duration-500 cursor-pointer group shadow-xl flex flex-col justify-between"
             >
               <div>
-                {/* Thumbnail Image with Zoom */}
-                <div className="relative h-52 sm:h-56 w-full rounded-xl overflow-hidden mb-6 bg-black">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card-bg via-transparent to-black/30" />
+                {/* Normalized Aspect Ratio Thumbnail with Blur-Up & Skeleton */}
+                <LazyImage
+                  src={article.image}
+                  alt={article.title}
+                  aspectRatio="16/10"
+                  containerClassName="w-full rounded-xl mb-6"
+                  className="group-hover:scale-108 transition-transform duration-700 ease-out"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-card-bg via-transparent to-black/30 pointer-events-none" />
                   
                   {/* Category Tag Badge */}
-                  <div className="absolute top-3 left-3">
+                  <div className="absolute top-3 left-3 pointer-events-none z-10">
                     <span className="px-3 py-1 rounded-full text-[10px] font-mono-num uppercase tracking-widest bg-black/80 backdrop-blur-md text-gold border border-white/10 font-medium">
                       {article.category}
                     </span>
                   </div>
 
-                  <div className="absolute bottom-3 right-3 px-2.5 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-mono-num text-neutral-300 border border-white/10">
+                  <div className="absolute bottom-3 right-3 px-2.5 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-mono-num text-neutral-300 border border-white/10 pointer-events-none z-10">
                     {article.readTime}
                   </div>
-                </div>
+                </LazyImage>
 
                 {/* Meta Line: Date & Author */}
                 <div className="flex items-center gap-3 text-[11px] font-mono-num text-neutral-500 mb-3">

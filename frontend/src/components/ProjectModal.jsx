@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { X, MapPin, Calendar, Layers, Clock, Award, ArrowRight, ChevronLeft, ChevronRight, Eye, Image as ImageIcon } from 'lucide-react';
+import LazyImage from './LazyImage';
 
 export default function ProjectModal() {
   const { selectedProject, setSelectedProject } = useApp();
@@ -64,29 +65,29 @@ export default function ProjectModal() {
         <div className="overflow-y-auto flex-1 p-6 sm:p-8 space-y-8">
           {/* Main Showcase Hero Picture with Interactive Prev/Next Controls */}
           <div className="relative h-80 sm:h-[420px] md:h-[480px] w-full rounded-xl overflow-hidden bg-black group border border-white/10 shadow-xl">
-            <img
+            <LazyImage
               src={currentMainImage}
               alt={selectedProject.title}
+              containerClassName="w-full h-full"
               className="w-full h-full object-cover transition-all duration-700 ease-out"
-              onError={(e) => {
-                e.currentTarget.src = fallbackImages[0];
-              }}
+              fallbackSrc={fallbackImages[0]}
+              priority={true}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111215] via-transparent to-black/30 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-black/30 pointer-events-none" />
 
             {/* Navigation Arrows on Main Picture */}
             {images.length > 1 && (
               <>
                 <button
                   onClick={handlePrevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-[#C5A880] hover:text-black text-white flex items-center justify-center transition border border-white/20 cursor-pointer"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-gold hover:text-black text-white flex items-center justify-center transition border border-white/20 cursor-pointer z-10"
                   title="Previous Photo"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={handleNextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-[#C5A880] hover:text-black text-white flex items-center justify-center transition border border-white/20 cursor-pointer"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 hover:bg-gold hover:text-black text-white flex items-center justify-center transition border border-white/20 cursor-pointer z-10"
                   title="Next Photo"
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -95,9 +96,9 @@ export default function ProjectModal() {
             )}
 
             {/* Bottom Caption & Image Counter */}
-            <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between pointer-events-none">
+            <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between pointer-events-none z-10">
               <div>
-                <span className="text-xs font-mono-num text-[#C5A880] tracking-wider uppercase block">
+                <span className="text-xs font-mono-num text-gold tracking-wider uppercase block">
                   {selectedProject.location} • {selectedProject.year || 2026}
                 </span>
                 <p className="text-sm font-editorial text-white font-medium drop-shadow-md">
@@ -133,31 +134,25 @@ export default function ProjectModal() {
                 <div
                   key={idx}
                   onClick={() => setActiveImageIndex(idx)}
-                  className={`group relative h-48 sm:h-52 rounded-xl overflow-hidden cursor-pointer border-2 transition-all duration-300 shadow-lg ${
+                  className={`group relative rounded-xl overflow-hidden cursor-pointer border-2 transition-all duration-300 shadow-lg ${
                     idx === activeImageIndex 
-                      ? 'border-[#C5A880] ring-2 ring-[#C5A880]/30 scale-[1.02]' 
+                      ? 'border-gold ring-2 ring-gold/30 scale-[1.02]' 
                       : 'border-white/10 hover:border-white/40'
                   }`}
                 >
-                  <img
+                  <LazyImage
                     src={img}
                     alt={`${selectedProject.title} - View ${idx + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      e.currentTarget.src = fallbackImages[idx % fallbackImages.length];
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors" />
-
-                  <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-sm text-[10px] font-mono-num text-white border border-white/10">
-                    Plate 0{idx + 1}
-                  </div>
-
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="p-2 rounded-full bg-[#C5A880] text-black shadow-xl">
-                      <Eye className="w-4 h-4" />
-                    </span>
-                  </div>
+                    aspectRatio="16/10"
+                    containerClassName="w-full h-full"
+                    className="group-hover:scale-105 transition-transform duration-500"
+                    fallbackSrc={fallbackImages[idx % fallbackImages.length]}
+                  >
+                    <div className="absolute inset-0 bg-black/25 group-hover:bg-transparent transition-colors pointer-events-none" />
+                    <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-sm text-[10px] font-mono-num text-white border border-white/10 pointer-events-none z-10">
+                      Plate 0{idx + 1}
+                    </div>
+                  </LazyImage>
                 </div>
               ))}
             </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Target, Compass, Heart, Eye, Award, CheckCircle2, ArrowRight } from 'lucide-react';
+import LazyImage from './LazyImage';
 
 export default function AboutSection() {
   const philosophies = [
@@ -91,23 +92,24 @@ export default function AboutSection() {
           {/* Right Column: Architectural Imagery & Philosophy Cards */}
           <div className="lg:col-span-6 space-y-6">
             
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl h-80 w-full group">
-              <img
-                src="/projects/townhouse_living.jpg"
-                alt="Genrev Interio Luxury Architecture & Interior"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0E0F12] via-transparent to-black/30" />
-              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs font-mono-num text-white">
+            <LazyImage
+              src="/projects/townhouse_living.jpg"
+              alt="Genrev Interio Luxury Architecture & Interior"
+              aspectRatio="16/10"
+              containerClassName="rounded-2xl border border-white/10 shadow-2xl w-full group"
+              className="group-hover:scale-105 transition-transform duration-700"
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-black/30 pointer-events-none" />
+              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs font-mono-num text-white pointer-events-none z-10">
                 <div>
                   <p className="font-semibold uppercase tracking-wider">Purposeful • Refined • Enduring</p>
                   <p className="text-[10px] text-neutral-400">Delhi NCR • Greater Noida • Kanpur</p>
                 </div>
-                <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[10px] text-[#C5A880]">
+                <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[10px] text-gold">
                   Turnkey Practice
                 </span>
               </div>
-            </div>
+            </LazyImage>
 
             {/* Vision & Mission Split Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

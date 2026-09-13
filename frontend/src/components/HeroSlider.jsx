@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
-import { ArrowRight, ChevronLeft, ChevronRight, Eye, Phone } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Phone, Eye } from 'lucide-react';
+import LazyImage from './LazyImage';
 
 export default function HeroSlider() {
   const { setSelectedProject } = useApp();
@@ -241,22 +242,23 @@ export default function HeroSlider() {
                   isSelected ? 'opacity-100' : 'opacity-80 hover:opacity-100'
                 }`}
               >
-                {/* Project Image Box */}
-                <div className="relative aspect-[4/3] rounded-sm overflow-hidden mb-5 border border-white/10 bg-neutral-900 group-hover:border-white/30 transition-colors">
-                  <img
-                    src={slide.image}
-                    alt={slide.projectName}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                {/* Normalized Aspect Ratio Project Image with Blur-Up Skeleton */}
+                <LazyImage
+                  src={slide.image}
+                  alt={slide.projectName}
+                  aspectRatio="4/3"
+                  containerClassName="rounded-sm mb-5 border border-white/10 group-hover:border-white/30 transition-colors"
+                  className="group-hover:scale-105 transition-transform duration-700"
+                >
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors pointer-events-none" />
 
                   {/* Active Indicator Pin */}
                   {isSelected && (
-                    <div className="absolute top-3 right-3 px-2 py-1 rounded bg-[#E52E2D] text-white text-[9px] font-mono-num tracking-widest uppercase font-bold shadow">
+                    <div className="absolute top-3 right-3 px-2 py-1 rounded bg-[#E52E2D] text-white text-[9px] font-mono-num tracking-widest uppercase font-bold shadow z-10 pointer-events-none">
                       ACTIVE
                     </div>
                   )}
-                </div>
+                </LazyImage>
 
                 {/* Project Metadata */}
                 <div className="space-y-2">
