@@ -56,7 +56,7 @@ export default function InstagramFeedSection() {
     },
     {
       id: 6,
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+      image: '/projects/resolut_aerial.jpg',
       caption: "Corporate Headquarters Turnkey Execution: Acoustic fluted timber partitions, seamless glass boardrooms, and biophilic open collaboration spaces.",
       tags: "#CommercialInteriors #OfficeDesign #DelhiNCRWorkspaces",
       likes: '156',

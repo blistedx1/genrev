@@ -8,7 +8,7 @@ const defaultPanels = [
     title: 'RESOLÜT PARTNERS HQ',
     category: 'FEATURED CORPORATE INTERIOR',
     location: 'Corporate Law Firm, Delhi NCR',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=85',
+    image: '/projects/resolut_facade.jpg',
     desc: 'A contemporary corporate interior designed around professionalism, sophistication, functionality and modern legal practice.'
   },
   {

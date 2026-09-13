@@ -44,7 +44,7 @@ At Genrev, our dual background in Architecture and Regional Planning ensures tha
     author: "Genrev Corporate Atelier",
     date: "10 Sept 2026",
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=85",
+    image: "/projects/resolut_terrace_night.jpg",
     excerpt: "Moving beyond the sterile debate of open-plan vs cubicles: acoustic isolation, circadian rhythm lighting, and the subtle psychology of corporate partner chambers.",
     content: `
 ### Beyond the Desk: Designing for Cognitive Flow

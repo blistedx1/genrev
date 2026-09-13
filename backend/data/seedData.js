@@ -30,8 +30,9 @@ const seedProjects = [
     description: "State-of-the-art legal atelier featuring acoustic wall paneling, fluted timber partitions, executive partner chambers, and bespoke conference suites.",
     detailedText: "Bespoke corporate architecture executed under the combined leadership of Genrev Architronics Enterprises and Ar. Abhishek Singh. Includes high-performance acoustic glass partitions, brass detailing, circadian lighting, and custom monolithic Italian reception desk.",
     images: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=85",
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=85"
+      "/projects/resolut_facade.jpg",
+      "/projects/resolut_terrace_night.jpg",
+      "/projects/resolut_aerial.jpg"
     ],
     location: "Delhi NCR",
     year: 2026,

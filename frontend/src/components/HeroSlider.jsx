@@ -18,12 +18,12 @@ export default function HeroSlider() {
       location: "Corporate Tech Park, Delhi NCR",
       year: "2026",
       category: "Featured Corporate Architecture",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=85",
+      image: "/projects/resolut_facade.jpg",
       description: "A contemporary corporate interior designed around professionalism, sophistication, functionality and the distinctive identity of a modern legal practice.",
       gallery: [
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=85",
-        "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=85",
-        "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=85"
+        "/projects/resolut_facade.jpg",
+        "/projects/resolut_terrace_night.jpg",
+        "/projects/resolut_aerial.jpg"
       ]
     },
     {
