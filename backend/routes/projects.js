@@ -78,6 +78,31 @@ router.post('/', async (req, res) => {
   }
 });
 
+// PUT /api/projects/:id - Update project
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updateData = req.body;
+
+    if (isMongoConnected()) {
+      const updated = await Project.findByIdAndUpdate(id, updateData, { new: true });
+      if (!updated) return res.status(404).json({ error: 'Project not found' });
+      return res.json(updated);
+    }
+
+    const store = getLocalStore();
+    const index = (store.projects || []).findIndex(p => p._id === id || p.id === id);
+    if (index === -1) return res.status(404).json({ error: 'Project not found' });
+
+    store.projects[index] = { ...store.projects[index], ...updateData };
+    saveLocalStore(store);
+    return res.json(store.projects[index]);
+  } catch (error) {
+    console.error('Error updating project:', error);
+    res.status(500).json({ error: 'Failed to update project' });
+  }
+});
+
 // DELETE /api/projects/:id - Delete project
 router.delete('/:id', async (req, res) => {
   try {

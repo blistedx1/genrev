@@ -147,6 +147,7 @@ export const AppProvider = ({ children }) => {
 
     setProjects(prev => {
       const updated = [newEntry, ...prev];
+      localStorage.setItem('genrev_projects_v2', JSON.stringify(updated));
       localStorage.setItem('genrev_projects', JSON.stringify(updated));
       return updated;
     });
@@ -162,10 +163,36 @@ export const AppProvider = ({ children }) => {
     return { success: true };
   };
 
+  // Update Project (edit fields, photos, cover)
+  const updateProject = async (id, updatedFields) => {
+    setProjects(prev => {
+      const updated = prev.map(p => {
+        if (p._id === id || p.id === id) {
+          return { ...p, ...updatedFields };
+        }
+        return p;
+      });
+      localStorage.setItem('genrev_projects_v2', JSON.stringify(updated));
+      localStorage.setItem('genrev_projects', JSON.stringify(updated));
+      return updated;
+    });
+
+    try {
+      await fetch(`/api/projects/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedFields)
+      });
+    } catch (e) {}
+
+    return { success: true };
+  };
+
   // Delete Project
   const deleteProject = async (id) => {
     setProjects(prev => {
       const updated = prev.filter(p => p._id !== id && p.id !== id);
+      localStorage.setItem('genrev_projects_v2', JSON.stringify(updated));
       localStorage.setItem('genrev_projects', JSON.stringify(updated));
       return updated;
     });
@@ -196,6 +223,7 @@ export const AppProvider = ({ children }) => {
         setActiveSlide,
         submitContact,
         addProject,
+        updateProject,
         deleteProject,
         fetchContacts,
         refreshData: fetchData
