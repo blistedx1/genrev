@@ -67,16 +67,16 @@ export default function ContactSection() {
           {/* Left Column: Direct Contact & Office Details */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <span className="text-[10px] font-mono-num uppercase tracking-[0.25em] text-[#C5A880] font-semibold block mb-2">
+              <span className="text-[10px] font-mono-num uppercase tracking-[0.25em] text-gold font-semibold block mb-2">
                 HAVE A PROJECT IN MIND?
               </span>
-              <h3 className="text-3xl sm:text-4xl font-editorial font-bold text-white mb-4 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white mb-4 leading-[1.08] tracking-tight">
                 Let’s Create Something Extraordinary.
-              </h3>
+              </h2>
               <p className="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed mb-3">
                 Whether you are planning a home, villa, office, commercial development, retail space, industrial facility or complete interior transformation, our team can help take your idea from concept to completion.
               </p>
-              <p className="text-xs text-[#C5A880] font-mono-num uppercase tracking-wider">
+              <p className="text-xs text-gold font-mono-num uppercase tracking-wider">
                 Tell us about your project. We’ll help you shape the vision.
               </p>
             </div>

@@ -40,7 +40,7 @@ export default function LogoStorySection() {
           <span className="text-xs uppercase tracking-[0.35em] text-gold font-mono-num font-semibold mb-2">
             BRAND ORIGIN & PHILOSOPHY
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white uppercase tracking-wider mb-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white uppercase tracking-tight sm:tracking-normal mb-3 leading-[1.08]">
             THE STORY BEHIND GENREV
           </h2>
           <p className="text-sm md:text-base font-mono-num uppercase tracking-[0.2em] text-gold font-medium">
@@ -54,9 +54,9 @@ export default function LogoStorySection() {
           
           {/* Left: Narrative Philosophy */}
           <div className="lg:col-span-7 space-y-6">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-editorial font-bold text-white leading-tight">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-editorial font-bold text-white leading-[1.15] tracking-tight">
               Transforming Energy into <br />
-              <span className="text-[#C5A880]">Meaningful Progress.</span>
+              <span className="text-gold">Meaningful Progress.</span>
             </h3>
 
             <p className="text-neutral-200 text-sm md:text-base font-light leading-relaxed">

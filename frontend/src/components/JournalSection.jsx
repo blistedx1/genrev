@@ -194,11 +194,11 @@ export default function JournalSection() {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="w-2 h-2 rounded-full bg-[#E52E2D]" />
-              <span className="text-xs uppercase tracking-[0.35em] text-[#C5A880] font-mono-num font-semibold">
+              <span className="text-xs uppercase tracking-[0.35em] text-gold font-mono-num font-semibold">
                 THE GENREV JOURNAL
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white uppercase tracking-wider">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white uppercase tracking-tight sm:tracking-normal leading-[1.08]">
               GENREV INSIGHTS
             </h2>
             <p className="text-xs font-mono-num uppercase text-neutral-400 tracking-widest mt-1">
@@ -262,7 +262,7 @@ export default function JournalSection() {
                 {/* Meta Line: Date & Author */}
                 <div className="flex items-center gap-3 text-[11px] font-mono-num text-neutral-500 mb-3">
                   <span className="flex items-center gap-1">
-                    <Calendar className="w-3 h-3 text-[#C5A880]" />
+                    <Calendar className="w-3 h-3 text-gold" />
                     <span>{article.date}</span>
                   </span>
                   <span>•</span>
@@ -270,7 +270,7 @@ export default function JournalSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-base sm:text-lg font-editorial font-bold text-white group-hover:text-[#DFC49F] transition-colors leading-snug mb-3 line-clamp-2">
+                <h3 className="text-base sm:text-lg font-editorial font-bold text-white group-hover:text-gold-light transition-colors leading-[1.25] tracking-tight mb-3 line-clamp-2">
                   {article.title}
                 </h3>
 
@@ -281,7 +281,7 @@ export default function JournalSection() {
               </div>
 
               {/* Bottom CTA */}
-              <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono-num text-[#C5A880]">
+              <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono-num text-gold">
                 <span className="uppercase tracking-wider font-medium group-hover:underline">READ PERSPECTIVE</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform" />
               </div>

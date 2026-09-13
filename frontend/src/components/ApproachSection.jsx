@@ -79,16 +79,16 @@ export default function ApproachSection() {
         
         {/* Header */}
         <div className="flex flex-col items-center justify-center text-center mb-20">
-          <span className="text-xs uppercase tracking-[0.35em] text-[#C5A880] font-mono-num font-semibold mb-2">
+          <span className="text-xs uppercase tracking-[0.35em] text-gold font-mono-num font-semibold mb-2">
             METHODOLOGY
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white uppercase tracking-wider mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white uppercase tracking-tight sm:tracking-normal mb-4 leading-[1.08]">
             OUR APPROACH
           </h2>
           <p className="text-sm md:text-base text-neutral-400 max-w-xl font-light">
             From Vision to Reality. Every project begins with understanding.
           </p>
-          <span className="w-12 h-[2px] bg-[#C5A880] mt-4"></span>
+          <span className="w-12 h-[2px] bg-gold mt-4"></span>
         </div>
 
         {/* 6-Step Interactive Roadmap */}

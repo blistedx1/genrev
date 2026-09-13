@@ -44,13 +44,13 @@ export default function AboutSection() {
           
           {/* Left Column: Vision & Philosophy Lead */}
           <div className="lg:col-span-6 pr-0 lg:pr-6">
-            <span className="text-xs font-mono-num uppercase tracking-[0.25em] text-[#C5A880] mb-3 block">
+            <span className="text-xs font-mono-num uppercase tracking-[0.25em] text-gold mb-3 block font-medium">
               MULTIDISCIPLINARY PRACTICE
             </span>
             
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white leading-tight mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-editorial font-bold text-white leading-[1.08] tracking-tight mb-8">
               We Create Spaces That <br />
-              <span className="text-[#C5A880]">Make a Difference.</span>
+              <span className="text-gold">Make a Difference.</span>
             </h2>
 
             <p className="text-neutral-300 text-sm md:text-base leading-relaxed mb-6 font-light">
