@@ -14,6 +14,22 @@ import {
   CheckCircle2
 } from 'lucide-react';
 
+function createContactShadowTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+  const gradient = ctx.createRadialGradient(256, 256, 0, 256, 256, 245);
+  gradient.addColorStop(0, 'rgba(0, 0, 0, 0.92)');
+  gradient.addColorStop(0.35, 'rgba(0, 0, 0, 0.6)');
+  gradient.addColorStop(0.7, 'rgba(0, 0, 0, 0.2)');
+  gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 512, 512);
+  const texture = new THREE.CanvasTexture(canvas);
+  return texture;
+}
+
 export default function ThreeStudioViewer() {
   const mountRef = useRef(null);
   const [lightingMode, setLightingMode] = useState('dusk'); // 'day', 'dusk', 'night'
@@ -21,6 +37,8 @@ export default function ThreeStudioViewer() {
   const [wireframeMode, setWireframeMode] = useState(false);
   const [activeHotspot, setActiveHotspot] = useState(null);
   const [autoRotate, setAutoRotate] = useState(true);
+  const [sceneReady, setSceneReady] = useState(false);
+  const [staticFallback, setStaticFallback] = useState(false);
 
   const sceneRefs = useRef({
     scene: null,
@@ -76,35 +94,57 @@ export default function ThreeStudioViewer() {
     );
     camera.position.set(6.5, 4.2, 7.5);
 
+    // Device capability check
+    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || navigator.maxTouchPoints > 1);
+
     // Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+    const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, powerPreference: 'high-performance' });
     renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.75));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.1;
+    renderer.toneMappingExposure = 1.15;
     container.appendChild(renderer.domElement);
 
     // Lighting Setup
-    const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.45);
     scene.add(ambient);
 
-    const sunLight = new THREE.DirectionalLight(0xffecd2, 2.2);
+    const sunLight = new THREE.DirectionalLight(0xffecd2, 2.4);
     sunLight.position.set(8, 12, 6);
     sunLight.castShadow = true;
-    sunLight.shadow.mapSize.width = 1024;
-    sunLight.shadow.mapSize.height = 1024;
+    sunLight.shadow.mapSize.width = isMobile ? 1024 : 2048;
+    sunLight.shadow.mapSize.height = isMobile ? 1024 : 2048;
+    sunLight.shadow.bias = -0.0002;
+    sunLight.shadow.radius = 3.5;
     scene.add(sunLight);
 
-    const duskLight = new THREE.DirectionalLight(0xff9944, 2.8);
+    const duskLight = new THREE.DirectionalLight(0xff9944, 2.9);
     duskLight.position.set(-8, 5, 6);
     duskLight.castShadow = true;
+    duskLight.shadow.mapSize.width = isMobile ? 1024 : 2048;
+    duskLight.shadow.mapSize.height = isMobile ? 1024 : 2048;
+    duskLight.shadow.bias = -0.0002;
+    duskLight.shadow.radius = 3.5;
     scene.add(duskLight);
 
-    const interiorWarm = new THREE.PointLight(0xffc580, 2.5, 12);
+    const interiorWarm = new THREE.PointLight(0xffc580, 2.6, 12);
     interiorWarm.position.set(0, 2.2, 0);
     scene.add(interiorWarm);
+
+    // Soft Ground Contact Ambient Occlusion
+    const contactGeo = new THREE.PlaneGeometry(13, 13);
+    const contactMat = new THREE.MeshBasicMaterial({
+      map: createContactShadowTexture(),
+      transparent: true,
+      opacity: 0.72,
+      depthWrite: false
+    });
+    const contactMesh = new THREE.Mesh(contactGeo, contactMat);
+    contactMesh.rotation.x = -Math.PI / 2;
+    contactMesh.position.y = -0.38;
+    scene.add(contactMesh);
 
     // Building Root Group
     const buildingGroup = new THREE.Group();
@@ -320,25 +360,63 @@ export default function ThreeStudioViewer() {
       updateCameraFromSpherical();
     };
 
+    // Touch Orbit Simulation for Mobile/Tablet
+    let isTouching = false;
+    let prevTouchPos = { x: 0, y: 0 };
+
+    const onTouchStart = (e) => {
+      if (e.touches.length === 1) {
+        isTouching = true;
+        prevTouchPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
+    };
+
+    const onTouchMove = (e) => {
+      if (!isTouching || e.touches.length !== 1) return;
+      const deltaX = e.touches[0].clientX - prevTouchPos.x;
+      const deltaY = e.touches[0].clientY - prevTouchPos.y;
+
+      spherical.theta -= deltaX * 0.008;
+      spherical.phi = Math.max(0.2, Math.min(Math.PI / 2 - 0.05, spherical.phi - deltaY * 0.008));
+
+      updateCameraFromSpherical();
+      prevTouchPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    };
+
+    const onTouchEnd = () => {
+      isTouching = false;
+    };
+
     container.addEventListener('mousedown', onMouseDown);
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
     container.addEventListener('wheel', onWheel, { passive: false });
+    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    container.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('touchend', onTouchEnd);
 
     // Animation Loop with Intersection Observer for 60fps performance
     let animId = null;
     let isVisible = false;
+    let renderedFrames = 0;
 
     const animate = () => {
       if (!isVisible) return;
       animId = requestAnimationFrame(animate);
 
-      if (autoRotate && !isDragging) {
+      if (autoRotate && !isDragging && !isTouching) {
         spherical.theta += 0.002;
         updateCameraFromSpherical();
       }
 
       renderer.render(scene, camera);
+
+      if (renderedFrames < 5) {
+        renderedFrames++;
+        if (renderedFrames === 3) {
+          setSceneReady(true);
+        }
+      }
     };
 
     const observer = new IntersectionObserver(
@@ -376,6 +454,9 @@ export default function ThreeStudioViewer() {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
       container.removeEventListener('wheel', onWheel);
+      container.removeEventListener('touchstart', onTouchStart);
+      container.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
       window.removeEventListener('resize', handleResize);
       if (animId) cancelAnimationFrame(animId);
       if (renderer.domElement && container.contains(renderer.domElement)) {
@@ -449,9 +530,9 @@ export default function ThreeStudioViewer() {
   }, [wireframeMode]);
 
   return (
-    <section id="3d-studio" className="relative py-28 px-4 sm:px-6 lg:px-12 bg-[#0E0F12] border-t border-b border-white/5 overflow-hidden">
+    <section id="3d-studio" className="relative py-28 px-4 sm:px-6 lg:px-12 bg-dark-surface border-t border-b border-white/5 overflow-hidden">
       {/* Background Watermark */}
-      <div className="absolute top-8 left-12 watermark-text text-8xl md:text-9xl opacity-30 select-none">
+      <div className="absolute top-8 left-12 watermark-text text-8xl md:text-9xl opacity-30 select-none pointer-events-none">
         3D Studio
       </div>
 
@@ -459,8 +540,8 @@ export default function ThreeStudioViewer() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <div className="flex items-center gap-3 text-xs tracking-[0.25em] uppercase text-[#C5A880] mb-3">
-              <span className="w-8 h-[1px] bg-[#C5A880]"></span>
+            <div className="flex items-center gap-3 text-xs tracking-[0.25em] uppercase text-gold mb-3">
+              <span className="w-8 h-[1px] bg-gold"></span>
               Spatial Virtual Configurator
             </div>
             <h2 className="text-3xl md:text-5xl font-editorial tracking-tight text-white">
@@ -473,53 +554,131 @@ export default function ThreeStudioViewer() {
 
           <div className="mt-6 md:mt-0 flex items-center gap-3">
             <span className="text-xs uppercase tracking-widest text-neutral-400 flex items-center gap-2">
-              <Compass className="w-4 h-4 text-[#C5A880] animate-spin-slow" />
-              Orbit: Drag to Rotate • Scroll to Zoom
+              <Compass className="w-4 h-4 text-gold animate-spin-slow" />
+              Orbit: Drag / Touch to Rotate • Scroll to Zoom
             </span>
           </div>
         </div>
 
         {/* 3D Canvas Viewport + Control HUD */}
         <div className="relative w-full h-[580px] md:h-[640px] rounded-2xl overflow-hidden border border-white/10 bg-dark-bg shadow-2xl">
-          {/* Three.js Container */}
-          <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+          {/* Architectural Loading State */}
+          {!sceneReady && !staticFallback && (
+            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-dark-bg/95 backdrop-blur-md transition-opacity duration-500">
+              <div className="relative w-16 h-16 mb-4 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full border border-gold/20 animate-ping"></div>
+                <div className="w-12 h-12 rounded-full border-2 border-transparent border-t-gold border-r-gold animate-spin"></div>
+                <Sparkles className="w-5 h-5 text-gold absolute" />
+              </div>
+              <p className="text-xs uppercase tracking-[0.25em] text-gold font-mono-num mb-2">
+                Calibrating Spatial Engine
+              </p>
+              <p className="text-[11px] text-neutral-400">Loading PBR architectural shaders & soft contact ambient occlusion...</p>
+              <div className="w-52 h-0.5 bg-white/10 rounded-full mt-4 overflow-hidden">
+                <div className="w-full h-full bg-gradient-to-r from-gold/40 via-gold to-gold/40 animate-pulse"></div>
+              </div>
+            </div>
+          )}
+
+          {/* 3D Canvas or 4K Static Fallback View */}
+          {staticFallback ? (
+            <div className="relative w-full h-full">
+              <img
+                src="/projects/townhouse_night_hd.jpg"
+                alt="Genrev Architectural Pavilion 4K Render"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/85 via-transparent to-black/40 pointer-events-none" />
+
+              {/* Clickable Hotspot Pins on 4K Static Render */}
+              <div className="absolute inset-0 pointer-events-none">
+                {hotspots.map((item, idx) => {
+                  const positions = [
+                    { top: '42%', left: '68%' },
+                    { top: '38%', left: '32%' },
+                    { top: '62%', left: '50%' },
+                    { top: '24%', left: '46%' }
+                  ];
+                  const pos = positions[idx] || { top: '50%', left: '50%' };
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => setActiveHotspot(activeHotspot === item.id ? null : item.id)}
+                      style={{ top: pos.top, left: pos.left }}
+                      className="absolute pointer-events-auto -translate-x-1/2 -translate-y-1/2 group"
+                    >
+                      <span className="relative flex h-8 w-8 items-center justify-center">
+                        <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+                          activeHotspot === item.id ? 'bg-gold' : 'bg-white/40'
+                        }`}></span>
+                        <span className={`relative inline-flex rounded-full h-6 w-6 items-center justify-center text-[11px] font-mono-num font-bold transition-transform group-hover:scale-110 ${
+                          activeHotspot === item.id ? 'bg-gold text-black shadow-lg shadow-gold/30' : 'bg-card-bg text-white border border-gold/70'
+                        }`}>
+                          0{idx + 1}
+                        </span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+          )}
 
           {/* Floating HUD Top Bar */}
-          <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-4 pointer-events-none">
-            <div className="pointer-events-auto flex items-center gap-2 bg-card-bg/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-xs">
+          <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-4 pointer-events-none z-10">
+            <div className="pointer-events-auto flex items-center gap-2 bg-card-bg/85 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span className="text-white font-mono-num font-medium">REALTIME WEBGL ENGINE</span>
-              <span className="text-neutral-400">| 60 FPS</span>
+              <span className="text-white font-mono-num font-medium">
+                {staticFallback ? '4K STUDIO RENDER' : 'REALTIME WEBGL ENGINE'}
+              </span>
+              <span className="text-neutral-400">| {staticFallback ? 'ULTRA RES' : '60 FPS'}</span>
             </div>
 
             {/* Quick Actions */}
-            <div className="pointer-events-auto flex items-center gap-2 bg-card-bg/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+            <div className="pointer-events-auto flex items-center gap-2 bg-card-bg/85 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
               <button
-                onClick={() => setAutoRotate(!autoRotate)}
+                onClick={() => setStaticFallback(!staticFallback)}
                 className={`px-3 py-1 text-xs rounded-full transition flex items-center gap-1.5 ${
-                  autoRotate ? 'bg-gold text-black font-medium' : 'text-neutral-400 hover:text-white'
+                  staticFallback ? 'bg-gold text-black font-semibold' : 'text-neutral-400 hover:text-white'
                 }`}
-                title="Toggle Auto Rotation"
+                title="Switch between Realtime 3D orbit and high-detail 4K render"
               >
-                <RotateCcw className={`w-3.5 h-3.5 ${autoRotate ? 'animate-spin-slow' : ''}`} />
-                {autoRotate ? 'Auto-Rotate ON' : 'Paused'}
+                <Eye className="w-3.5 h-3.5" />
+                {staticFallback ? '4K Mode' : 'Static 4K'}
               </button>
 
-              <button
-                onClick={() => setWireframeMode(!wireframeMode)}
-                className={`px-3 py-1 text-xs rounded-full transition flex items-center gap-1.5 ${
-                  wireframeMode ? 'bg-gold text-black font-medium' : 'text-neutral-400 hover:text-white'
-                }`}
-                title="Toggle Wireframe Blueprint"
-              >
-                <Layers className="w-3.5 h-3.5" />
-                {wireframeMode ? 'Blueprint Active' : 'Solid Surfaces'}
-              </button>
+              {!staticFallback && (
+                <>
+                  <button
+                    onClick={() => setAutoRotate(!autoRotate)}
+                    className={`px-3 py-1 text-xs rounded-full transition flex items-center gap-1.5 ${
+                      autoRotate ? 'bg-gold text-black font-medium' : 'text-neutral-400 hover:text-white'
+                    }`}
+                    title="Toggle Auto Rotation"
+                  >
+                    <RotateCcw className={`w-3.5 h-3.5 ${autoRotate ? 'animate-spin-slow' : ''}`} />
+                    {autoRotate ? 'Rotate ON' : 'Paused'}
+                  </button>
+
+                  <button
+                    onClick={() => setWireframeMode(!wireframeMode)}
+                    className={`px-3 py-1 text-xs rounded-full transition flex items-center gap-1.5 ${
+                      wireframeMode ? 'bg-gold text-black font-medium' : 'text-neutral-400 hover:text-white'
+                    }`}
+                    title="Toggle Wireframe Blueprint"
+                  >
+                    <Layers className="w-3.5 h-3.5" />
+                    {wireframeMode ? 'Blueprint' : 'Solid'}
+                  </button>
+                </>
+              )}
             </div>
           </div>
 
           {/* Floating HUD Bottom Toolbar */}
-          <div className="absolute bottom-4 left-4 right-4 flex flex-col md:flex-row items-center justify-between gap-4 pointer-events-none">
+          <div className="absolute bottom-4 left-4 right-4 flex flex-col md:flex-row items-center justify-between gap-4 pointer-events-none z-10">
             {/* Lighting Modes */}
             <div className="pointer-events-auto flex items-center gap-1 bg-card-bg/90 backdrop-blur-md p-1.5 rounded-xl border border-white/10">
               <span className="text-[11px] uppercase tracking-wider text-neutral-400 px-3 font-mono-num">Lighting:</span>
@@ -553,7 +712,7 @@ export default function ThreeStudioViewer() {
             </div>
 
             {/* Material Finishes */}
-            <div className="pointer-events-auto flex items-center gap-1 bg-[#18191E]/90 backdrop-blur-md p-1.5 rounded-xl border border-white/10">
+            <div className="pointer-events-auto flex items-center gap-1 bg-card-bg/90 backdrop-blur-md p-1.5 rounded-xl border border-white/10">
               <span className="text-[11px] uppercase tracking-wider text-neutral-400 px-3 font-mono-num">Finishes:</span>
               <button
                 onClick={() => setMaterialTheme('marble')}
@@ -591,13 +750,13 @@ export default function ThreeStudioViewer() {
               onClick={() => setActiveHotspot(activeHotspot === item.id ? null : item.id)}
               className={`p-5 rounded-xl border transition-all cursor-pointer ${
                 activeHotspot === item.id 
-                  ? 'bg-[#18191E] border-[#C5A880] shadow-lg shadow-[#C5A880]/10' 
-                  : 'bg-[#14151A] border-white/5 hover:border-white/20'
+                  ? 'bg-card-bg border-gold shadow-lg shadow-gold/10' 
+                  : 'bg-dark-elevated border-white/5 hover:border-white/20'
               }`}
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono-num text-[#C5A880]">0{idx + 1}</span>
-                <span className="w-2 h-2 rounded-full bg-[#C5A880]"></span>
+                <span className="text-xs font-mono-num text-gold">0{idx + 1}</span>
+                <span className={`w-2 h-2 rounded-full ${activeHotspot === item.id ? 'bg-gold animate-ping' : 'bg-gold/40'}`}></span>
               </div>
               <h4 className="text-sm font-semibold text-white mb-2">{item.title}</h4>
               <p className="text-xs text-neutral-400 leading-relaxed">{item.detail}</p>

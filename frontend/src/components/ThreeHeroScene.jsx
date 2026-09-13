@@ -12,6 +12,8 @@ export default function ThreeHeroScene({ slideIndex = 0 }) {
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x111215, 0.035);
 
+    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 768 || navigator.maxTouchPoints > 1);
+
     const camera = new THREE.PerspectiveCamera(
       45,
       container.clientWidth / container.clientHeight,
@@ -20,26 +22,26 @@ export default function ThreeHeroScene({ slideIndex = 0 }) {
     );
     camera.position.set(0, 1.8, 8);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+    const renderer = new THREE.WebGLRenderer({ antialias: !isMobile, alpha: true, powerPreference: "high-performance" });
     renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 1.75));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
+    renderer.toneMappingExposure = 1.15;
     container.appendChild(renderer.domElement);
 
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
     scene.add(ambientLight);
 
-    const goldKeyLight = new THREE.DirectionalLight(0xc5a880, 2.2);
+    const goldKeyLight = new THREE.DirectionalLight(0xc5a880, 2.4);
     goldKeyLight.position.set(5, 8, 4);
     scene.add(goldKeyLight);
 
-    const blueFillLight = new THREE.PointLight(0x4a6fa5, 1.5, 20);
+    const blueFillLight = new THREE.PointLight(0x4a6fa5, 1.4, 20);
     blueFillLight.position.set(-6, 3, -2);
     scene.add(blueFillLight);
 
-    const warmPoint = new THREE.PointLight(0xdfc49f, 2, 12);
+    const warmPoint = new THREE.PointLight(0xdfc49f, 2.2, 12);
     warmPoint.position.set(0, 2.5, 1);
     scene.add(warmPoint);
 
@@ -136,7 +138,7 @@ export default function ThreeHeroScene({ slideIndex = 0 }) {
     archGroup.add(ringMesh2);
 
     // Floating Atmospheric Particle Field
-    const particleCount = 120;
+    const particleCount = isMobile ? 36 : 110;
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount * 3; i += 3) {
