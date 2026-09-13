@@ -59,6 +59,7 @@ export const AppProvider = ({ children }) => {
 
   // Fetch all live data from backend API if available
   const fetchData = async () => {
+    setLoading(true);
     try {
       const [projRes, testRes, clientRes] = await Promise.all([
         fetch('/api/projects').then(r => (r.ok ? r.json() : null)).catch(() => null),

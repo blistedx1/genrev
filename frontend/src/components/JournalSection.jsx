@@ -229,71 +229,91 @@ export default function JournalSection() {
           ))}
         </div>
 
-        {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {filteredArticles.map((article) => (
-            <article
-              key={article.id}
-              onClick={() => setActiveArticle(article)}
-              className="p-6 rounded-2xl bg-card-bg border border-white/5 hover:border-gold/40 transition-all duration-500 cursor-pointer group shadow-xl flex flex-col justify-between"
+        {/* Articles Grid or Empty State */}
+        {filteredArticles.length === 0 ? (
+          <div className="py-20 px-8 text-center rounded-2xl bg-card-bg/60 border border-white/5 max-w-xl mx-auto flex flex-col items-center shadow-xl mb-16">
+            <div className="w-14 h-14 rounded-full bg-white/5 border border-gold/30 flex items-center justify-center mb-4">
+              <BookOpen className="w-6 h-6 text-gold" />
+            </div>
+            <h4 className="text-xl font-editorial font-bold text-white mb-2">
+              No Articles in "{selectedCategory}"
+            </h4>
+            <p className="text-xs text-neutral-400 font-light leading-relaxed max-w-md mb-6">
+              No architectural perspectives currently match this category filter. Browse our complete collection of insights across all domains.
+            </p>
+            <button
+              onClick={() => setSelectedCategory('All')}
+              className="px-6 py-2.5 rounded-full bg-gold text-black text-xs font-semibold uppercase tracking-wider hover:bg-gold-light transition-all shadow-lg shadow-gold/20 cursor-pointer"
             >
-              <div>
-                {/* Normalized Aspect Ratio Thumbnail with Blur-Up & Skeleton */}
-                <LazyImage
-                  src={article.image}
-                  alt={article.title}
-                  aspectRatio="16/10"
-                  containerClassName="w-full rounded-xl mb-6"
-                  className="group-hover:scale-108 transition-transform duration-700 ease-out"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-card-bg via-transparent to-black/30 pointer-events-none" />
-                  
-                  {/* Category Tag Badge */}
-                  <div className="absolute top-3 left-3 pointer-events-none z-10">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-mono-num uppercase tracking-widest bg-black/80 backdrop-blur-md text-gold border border-white/10 font-medium">
-                      {article.category}
+              View All Perspectives
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {filteredArticles.map((article) => (
+              <article
+                key={article.id}
+                onClick={() => setActiveArticle(article)}
+                className="p-6 rounded-2xl bg-card-bg border border-white/5 hover:border-gold/40 transition-all duration-500 cursor-pointer group shadow-xl flex flex-col justify-between"
+              >
+                <div>
+                  {/* Normalized Aspect Ratio Thumbnail with Blur-Up & Skeleton */}
+                  <LazyImage
+                    src={article.image}
+                    alt={article.title}
+                    aspectRatio="16/10"
+                    containerClassName="w-full rounded-xl mb-6"
+                    className="group-hover:scale-108 transition-transform duration-700 ease-out"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-t from-card-bg via-transparent to-black/30 pointer-events-none" />
+                    
+                    {/* Category Tag Badge */}
+                    <div className="absolute top-3 left-3 pointer-events-none z-10">
+                      <span className="px-3 py-1 rounded-full text-[10px] font-mono-num uppercase tracking-widest bg-black/80 backdrop-blur-md text-gold border border-white/10 font-medium">
+                        {article.category}
+                      </span>
+                    </div>
+
+                    <div className="absolute bottom-3 right-3 px-2.5 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-mono-num text-neutral-300 border border-white/10 pointer-events-none z-10">
+                      {article.readTime}
+                    </div>
+                  </LazyImage>
+
+                  {/* Meta Line: Date & Author */}
+                  <div className="flex items-center gap-3 text-[11px] font-mono-num text-neutral-500 mb-3">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3 text-gold" />
+                      <span>{article.date}</span>
                     </span>
+                    <span>•</span>
+                    <span className="truncate">{article.author.split(' ')[0]}</span>
                   </div>
 
-                  <div className="absolute bottom-3 right-3 px-2.5 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-mono-num text-neutral-300 border border-white/10 pointer-events-none z-10">
-                    {article.readTime}
-                  </div>
-                </LazyImage>
+                  {/* Title */}
+                  <h3 className="text-base sm:text-lg font-editorial font-bold text-white group-hover:text-gold-light transition-colors leading-[1.25] tracking-tight mb-3 line-clamp-2">
+                    {article.title}
+                  </h3>
 
-                {/* Meta Line: Date & Author */}
-                <div className="flex items-center gap-3 text-[11px] font-mono-num text-neutral-500 mb-3">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="w-3 h-3 text-gold" />
-                    <span>{article.date}</span>
-                  </span>
-                  <span>•</span>
-                  <span className="truncate">{article.author.split(' ')[0]}</span>
+                  {/* Excerpt */}
+                  <p className="text-xs text-neutral-400 font-light leading-relaxed line-clamp-3 mb-4">
+                    {article.excerpt}
+                  </p>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-base sm:text-lg font-editorial font-bold text-white group-hover:text-gold-light transition-colors leading-[1.25] tracking-tight mb-3 line-clamp-2">
-                  {article.title}
-                </h3>
-
-                {/* Excerpt */}
-                <p className="text-xs text-neutral-400 font-light leading-relaxed line-clamp-3 mb-4">
-                  {article.excerpt}
-                </p>
-              </div>
-
-              {/* Bottom CTA */}
-              <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono-num text-gold">
-                <span className="uppercase tracking-wider font-medium group-hover:underline">READ PERSPECTIVE</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform" />
-              </div>
-            </article>
-          ))}
-        </div>
+                {/* Bottom CTA */}
+                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono-num text-gold">
+                  <span className="uppercase tracking-wider font-medium group-hover:underline">READ PERSPECTIVE</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform" />
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
 
         {/* Knowledge Hub Footer Banner */}
-        <div className="p-8 rounded-2xl bg-gradient-to-r from-[#181920] to-[#121316] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="p-8 rounded-2xl bg-gradient-to-r from-card-bg to-dark-surface border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <span className="text-[10px] font-mono-num uppercase tracking-[0.25em] text-[#C5A880] font-semibold block mb-1">
+            <span className="text-[10px] font-mono-num uppercase tracking-[0.25em] text-gold font-semibold block mb-1">
               CONTINUOUS RESEARCH
             </span>
             <h4 className="text-lg md:text-xl font-editorial font-bold text-white">

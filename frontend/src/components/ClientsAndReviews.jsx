@@ -92,54 +92,74 @@ export default function ClientsAndReviews() {
           ))}
         </div>
 
-        {/* Client Grid - 19 Structured Entries */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto mb-16">
-          {filteredClients.map((client, idx) => (
-            <div
-              key={client.name + idx}
-              className="p-5 rounded-xl bg-card-bg/80 hover:bg-dark-elevated border border-white/5 hover:border-gold/40 transition-all duration-300 flex flex-col justify-between group shadow-lg"
+        {/* Client Grid or Empty State */}
+        {filteredClients.length === 0 ? (
+          <div className="py-16 px-8 text-center rounded-2xl bg-card-bg/60 border border-white/5 max-w-xl mx-auto flex flex-col items-center shadow-xl mb-16">
+            <div className="w-14 h-14 rounded-full bg-white/5 border border-gold/30 flex items-center justify-center mb-4">
+              <Building className="w-6 h-6 text-gold" />
+            </div>
+            <h4 className="text-xl font-editorial font-bold text-white mb-2">
+              No Clients Found in "{selectedCategory}"
+            </h4>
+            <p className="text-xs text-neutral-400 font-light leading-relaxed max-w-md mb-6">
+              No clients or project stakeholders are currently listed under this classification filter.
+            </p>
+            <button
+              onClick={() => setSelectedCategory('All')}
+              className="px-6 py-2.5 rounded-full bg-gold text-dark-bg text-xs font-semibold uppercase tracking-wider hover:bg-gold-light transition-all shadow-lg shadow-gold/20 cursor-pointer"
             >
-              <div>
-                {/* Header: Geometric Emblem + Category Icon */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-1.5 opacity-70 group-hover:opacity-100 transition-opacity">
-                    <span className="w-2.5 h-2.5 rounded-full border border-[#C5A880] group-hover:bg-[#C5A880] transition-colors"></span>
-                    <span className="w-2 h-2 rotate-45 border border-white/40"></span>
+              Reset Client Filter
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto mb-16">
+            {filteredClients.map((client, idx) => (
+              <div
+                key={client.name + idx}
+                className="p-5 rounded-xl bg-card-bg/80 hover:bg-dark-elevated border border-white/5 hover:border-gold/40 transition-all duration-300 flex flex-col justify-between group shadow-lg"
+              >
+                <div>
+                  {/* Header: Geometric Emblem + Category Icon */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-1.5 opacity-70 group-hover:opacity-100 transition-opacity">
+                      <span className="w-2.5 h-2.5 rounded-full border border-gold group-hover:bg-gold transition-colors"></span>
+                      <span className="w-2 h-2 rotate-45 border border-white/40"></span>
+                    </div>
+                    <span className="px-2 py-0.5 rounded text-[9px] font-mono-num uppercase tracking-wider bg-white/5 text-neutral-400 border border-white/5 flex items-center gap-1">
+                      {getCategoryIcon(client.category)}
+                      <span>{client.category || 'Architecture'}</span>
+                    </span>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[9px] font-mono-num uppercase tracking-wider bg-white/5 text-neutral-400 border border-white/5 flex items-center gap-1">
-                    {getCategoryIcon(client.category)}
-                    <span>{client.category || 'Architecture'}</span>
-                  </span>
+
+                  {/* Client / Project Name */}
+                  <h4 className="text-sm font-bold tracking-wide uppercase text-white group-hover:text-gold-light transition-colors font-sans">
+                    {client.name}
+                  </h4>
+
+                  {/* Scope / Subtitle */}
+                  {client.subtitle && (
+                    <p className="text-xs text-neutral-400 font-light mt-1 line-clamp-2">
+                      {client.subtitle}
+                    </p>
+                  )}
                 </div>
 
-                {/* Client / Project Name */}
-                <h4 className="text-sm font-bold tracking-wide uppercase text-white group-hover:text-[#DFC49F] transition-colors font-sans">
-                  {client.name}
-                </h4>
-
-                {/* Scope / Subtitle */}
-                {client.subtitle && (
-                  <p className="text-xs text-neutral-400 font-light mt-1 line-clamp-2">
-                    {client.subtitle}
-                  </p>
-                )}
-              </div>
-
-              {/* Bottom Details: Location & Entity */}
-              <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono-num text-neutral-500">
-                <span className="flex items-center gap-1 text-neutral-400">
-                  <MapPin className="w-3 h-3 text-[#C5A880]" />
-                  <span>{client.location || 'India'}</span>
-                </span>
-                {client.entity && (
-                  <span className="text-[9px] text-[#C5A880]/80 tracking-tight truncate max-w-[130px]" title={client.entity}>
-                    {client.entity.split(' ')[0]}
+                {/* Bottom Details: Location & Entity */}
+                <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono-num text-neutral-500">
+                  <span className="flex items-center gap-1 text-neutral-400">
+                    <MapPin className="w-3 h-3 text-gold" />
+                    <span>{client.location || 'India'}</span>
                   </span>
-                )}
+                  {client.entity && (
+                    <span className="text-[9px] text-gold/80 tracking-tight truncate max-w-[130px]" title={client.entity}>
+                      {client.entity.split(' ')[0]}
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Client Disclaimer matching user copy */}
         <div className="text-center -mt-8 mb-16">

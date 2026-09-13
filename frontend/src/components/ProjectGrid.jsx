@@ -13,7 +13,7 @@ const fallbackCatalog = [
 ];
 
 export default function ProjectGrid() {
-  const { projects, setSelectedProject } = useApp();
+  const { projects, setSelectedProject, loading } = useApp();
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const categories = ['All', 'Residential', 'Villas', 'Corporate', 'Commercial', 'Retail', 'Industrial', 'Institutional', 'Interiors'];
@@ -48,7 +48,7 @@ export default function ProjectGrid() {
             onClick={() => setSelectedCategory(cat)}
             className={`px-5 py-2 rounded-full text-xs font-mono-num uppercase tracking-wider transition-all duration-300 cursor-pointer ${
               selectedCategory === cat
-                ? 'bg-[#C5A880] text-black font-semibold shadow-lg shadow-[#C5A880]/20'
+                ? 'bg-gold text-black font-semibold shadow-lg shadow-gold/20'
                 : 'bg-white/5 text-neutral-400 hover:text-white hover:bg-white/10 border border-white/5'
             }`}
           >
@@ -57,91 +57,132 @@ export default function ProjectGrid() {
         ))}
       </div>
 
-      {/* 3-Column Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProjects.map((project, idx) => {
-          const mainImage = (project.images && project.images.length > 0 && project.images[0])
-            ? project.images[0]
-            : (project.image || fallbackCatalog[idx % fallbackCatalog.length]);
-
-          const photoCount = (project.images && project.images.length) || 1;
-
-          return (
+      {/* Loading Skeleton State */}
+      {loading && (!projects || projects.length === 0) ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[1, 2, 3, 4, 5, 6].map((n) => (
             <div
-              key={project._id || project.id || project.title}
-              onClick={() => setSelectedProject(project)}
-              className="group relative overflow-hidden rounded-xl bg-card-bg border border-white/5 hover:border-gold/40 transition-all duration-500 cursor-pointer shadow-xl flex flex-col"
+              key={n}
+              className="rounded-xl overflow-hidden bg-card-bg border border-white/5 shadow-xl flex flex-col animate-pulse"
             >
-              {/* Normalized Aspect Ratio Project Image with Blur-Up Skeleton */}
-              <LazyImage
-                src={mainImage}
-                alt={project.title}
-                aspectRatio="16/11"
-                containerClassName="w-full"
-                className="group-hover:scale-108 transition-transform duration-700 ease-out"
-                fallbackSrc={fallbackCatalog[idx % fallbackCatalog.length]}
-              >
-                {/* Gradient Scrim */}
-                <div className="absolute inset-0 bg-gradient-to-t from-card-bg via-transparent to-black/40 opacity-80 group-hover:opacity-90 transition-opacity pointer-events-none" />
-
-                {/* Top Badges */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
-                  <span className="px-3 py-1 rounded-full text-[10px] font-mono-num uppercase tracking-widest bg-dark-bg/85 backdrop-blur-md text-gold border border-white/10">
-                    {project.category}
-                  </span>
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-white/10 text-[10px] font-mono-num text-neutral-300">
-                    <ImageIcon className="w-3 h-3 text-gold" />
-                    <span>{photoCount} Photos</span>
-                  </div>
-                </div>
-
-                {/* Hover CTA Button (Pops up from center) */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-10">
-                  <span className="px-6 py-2.5 rounded-full bg-gold text-dark-bg text-xs font-semibold uppercase tracking-wider flex items-center gap-2 shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform">
-                    <span>VIEW FULL GALLERY</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-              </LazyImage>
-
-              {/* Card Information */}
-              <div className="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 text-xs text-neutral-400 font-mono-num mb-2">
-                    <MapPin className="w-3.5 h-3.5 text-[#C5A880]" />
-                    <span className="truncate">{project.location || 'Pan-India'}</span>
-                    {project.year && (
-                      <>
-                        <span>•</span>
-                        <span>{project.year}</span>
-                      </>
-                    )}
-                    {project.area && (
-                      <>
-                        <span>•</span>
-                        <span>{project.area}</span>
-                      </>
-                    )}
-                  </div>
-
-                  <h3 className="text-xl font-editorial font-bold text-white group-hover:text-[#C5A880] transition-colors leading-snug">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-xs text-neutral-400 mt-2 line-clamp-2 leading-relaxed font-light">
-                    {project.description}
-                  </p>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono-num text-neutral-500">
-                  <span>Explore Case Study</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#C5A880]" />
-                </div>
+              <div className="w-full aspect-[16/11] skeleton-shimmer relative">
+                <div className="absolute top-4 left-4 w-20 h-5 rounded-full bg-white/10" />
+              </div>
+              <div className="p-6 space-y-3">
+                <div className="w-28 h-3.5 rounded bg-white/10" />
+                <div className="w-48 h-5 rounded bg-white/15" />
+                <div className="w-full h-3 rounded bg-white/5" />
+                <div className="w-3/4 h-3 rounded bg-white/5" />
               </div>
             </div>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      ) : filteredProjects.length === 0 ? (
+        /* Luxury Architectural Empty State */
+        <div className="py-20 px-8 text-center rounded-2xl bg-card-bg/60 border border-white/5 max-w-xl mx-auto flex flex-col items-center shadow-xl">
+          <div className="w-14 h-14 rounded-full bg-white/5 border border-gold/30 flex items-center justify-center mb-4">
+            <Layers className="w-6 h-6 text-gold" />
+          </div>
+          <h4 className="text-xl font-editorial font-bold text-white mb-2">
+            No Showcases in "{selectedCategory}"
+          </h4>
+          <p className="text-xs text-neutral-400 font-light leading-relaxed max-w-md mb-6">
+            No active architectural projects currently match this classification. Select another discipline or explore our complete portfolio catalog.
+          </p>
+          <button
+            onClick={() => setSelectedCategory('All')}
+            className="px-6 py-2.5 rounded-full bg-gold text-black text-xs font-semibold uppercase tracking-wider hover:bg-gold-light transition-all shadow-lg shadow-gold/20 cursor-pointer"
+          >
+            View All Showcases
+          </button>
+        </div>
+      ) : (
+        /* 3-Column Grid */
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, idx) => {
+            const mainImage = (project.images && project.images.length > 0 && project.images[0])
+              ? project.images[0]
+              : (project.image || fallbackCatalog[idx % fallbackCatalog.length]);
+
+            const photoCount = (project.images && project.images.length) || 1;
+
+            return (
+              <div
+                key={project._id || project.id || project.title}
+                onClick={() => setSelectedProject(project)}
+                className="group relative overflow-hidden rounded-xl bg-card-bg border border-white/5 hover:border-gold/40 transition-all duration-500 cursor-pointer shadow-xl flex flex-col"
+              >
+                {/* Normalized Aspect Ratio Project Image with Blur-Up Skeleton */}
+                <LazyImage
+                  src={mainImage}
+                  alt={project.title}
+                  aspectRatio="16/11"
+                  containerClassName="w-full"
+                  className="group-hover:scale-108 transition-transform duration-700 ease-out"
+                  fallbackSrc={fallbackCatalog[idx % fallbackCatalog.length]}
+                >
+                  {/* Gradient Scrim */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-card-bg via-transparent to-black/40 opacity-80 group-hover:opacity-90 transition-opacity pointer-events-none" />
+
+                  {/* Top Badges */}
+                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
+                    <span className="px-3 py-1 rounded-full text-[10px] font-mono-num uppercase tracking-widest bg-dark-bg/85 backdrop-blur-md text-gold border border-white/10">
+                      {project.category}
+                    </span>
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-white/10 text-[10px] font-mono-num text-neutral-300">
+                      <ImageIcon className="w-3 h-3 text-gold" />
+                      <span>{photoCount} Photos</span>
+                    </div>
+                  </div>
+
+                  {/* Hover CTA Button (Pops up from center) */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-10">
+                    <span className="px-6 py-2.5 rounded-full bg-gold text-dark-bg text-xs font-semibold uppercase tracking-wider flex items-center gap-2 shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                      <span>VIEW FULL GALLERY</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                </LazyImage>
+
+                {/* Card Information */}
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 text-xs text-neutral-400 font-mono-num mb-2">
+                      <MapPin className="w-3.5 h-3.5 text-gold" />
+                      <span className="truncate">{project.location || 'Pan-India'}</span>
+                      {project.year && (
+                        <>
+                          <span>•</span>
+                          <span>{project.year}</span>
+                        </>
+                      )}
+                      {project.area && (
+                        <>
+                          <span>•</span>
+                          <span>{project.area}</span>
+                        </>
+                      )}
+                    </div>
+
+                    <h3 className="text-xl font-editorial font-bold text-white group-hover:text-gold transition-colors leading-snug">
+                      {project.title}
+                    </h3>
+
+                    <p className="text-xs text-neutral-400 mt-2 line-clamp-2 leading-relaxed font-light">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono-num text-neutral-500">
+                    <span>Explore Case Study</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-gold" />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
