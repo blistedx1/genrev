@@ -214,14 +214,14 @@ export default function ClientsAndReviews() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={prevReview}
-                  className="w-10 h-10 rounded-full border border-white/10 hover:border-[#C5A880] hover:text-[#C5A880] text-neutral-400 flex items-center justify-center transition cursor-pointer"
+                  className="w-10 h-10 rounded-full border border-white/10 hover:border-gold hover:text-gold text-neutral-400 flex items-center justify-center transition cursor-pointer active:scale-95"
                   aria-label="Previous Testimonial"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={nextReview}
-                  className="w-10 h-10 rounded-full border border-white/10 hover:border-[#C5A880] hover:text-[#C5A880] text-neutral-400 flex items-center justify-center transition cursor-pointer"
+                  className="w-10 h-10 rounded-full border border-white/10 hover:border-gold hover:text-gold text-neutral-400 flex items-center justify-center transition cursor-pointer active:scale-95"
                   aria-label="Next Testimonial"
                 >
                   <ChevronRight className="w-4 h-4" />

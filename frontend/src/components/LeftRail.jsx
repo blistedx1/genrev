@@ -32,7 +32,7 @@ export default function LeftRail({ totalSlides = 4 }) {
         <div className="flex flex-col gap-3">
           <button
             onClick={handlePrev}
-            className="w-10 h-10 rounded-full border border-white/10 hover:border-[#C5A880] hover:text-[#C5A880] text-neutral-400 flex items-center justify-center transition group cursor-pointer"
+            className="w-10 h-10 rounded-full border border-white/10 hover:border-gold hover:text-gold text-neutral-400 flex items-center justify-center transition group cursor-pointer active:scale-95"
             title="Previous Slide"
             aria-label="Previous Slide"
           >
@@ -40,7 +40,7 @@ export default function LeftRail({ totalSlides = 4 }) {
           </button>
           <button
             onClick={handleNext}
-            className="w-10 h-10 rounded-full border border-white/10 hover:border-[#C5A880] hover:text-[#C5A880] text-neutral-400 flex items-center justify-center transition group cursor-pointer"
+            className="w-10 h-10 rounded-full border border-white/10 hover:border-gold hover:text-gold text-neutral-400 flex items-center justify-center transition group cursor-pointer active:scale-95"
             title="Next Slide"
             aria-label="Next Slide"
           >
