@@ -47,17 +47,17 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-[#111215] overflow-hidden">
+    <section id="contact" className="relative py-28 lg:py-32 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-bg overflow-hidden border-b border-white/5">
       {/* Giant Background Watermark matching go.arch screenshot */}
-      <div className="absolute top-12 right-10 watermark-text text-8xl md:text-[14rem] select-none opacity-20">
-        contacts
+      <div className="absolute top-10 right-8 sm:right-16 watermark-text text-7xl sm:text-9xl md:text-[13rem] select-none pointer-events-none">
+        Contact
       </div>
 
       <div className="relative max-w-7xl mx-auto z-10">
         {/* Section Heading matching "GET IN TOUCH" */}
         <div className="flex items-center gap-3 mb-16">
           <span className="text-xs uppercase tracking-[0.35em] text-white font-mono-num font-semibold">
-            GET <span className="text-[#C5A880]">IN TOUCH</span>
+            GET <span className="text-gold">IN TOUCH</span>
           </span>
           <span className="w-16 h-[1px] bg-white/10"></span>
         </div>

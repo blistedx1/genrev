@@ -58,9 +58,9 @@ function MainLayout() {
 
         {/* 6. Our Projects Section */}
         <AnimatedReveal direction="up" delay={0.1}>
-          <section id="projects" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 overflow-hidden bg-dark-bg">
+          <section id="projects" className="relative py-28 lg:py-32 px-6 sm:px-12 lg:pl-36 lg:pr-16 overflow-hidden bg-dark-bg border-b border-white/5">
             {/* Background Watermark matching go.arch screenshot */}
-            <div className="absolute top-12 left-16 watermark-text text-8xl md:text-[14rem] select-none opacity-20 pointer-events-none">
+            <div className="absolute top-10 left-8 sm:left-16 lg:left-24 watermark-text text-7xl sm:text-9xl md:text-[13rem] select-none pointer-events-none">
               Projects
             </div>
 

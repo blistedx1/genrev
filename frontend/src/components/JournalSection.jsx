@@ -182,9 +182,9 @@ export default function JournalSection() {
     : journalArticles.filter(a => a.category.toLowerCase() === selectedCategory.toLowerCase());
 
   return (
-    <section id="journal" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-[#0E0F13] overflow-hidden border-b border-white/5">
+    <section id="journal" className="relative py-28 lg:py-32 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-surface overflow-hidden border-b border-white/5">
       {/* Background Watermark */}
-      <div className="absolute top-10 left-16 watermark-text text-8xl md:text-[14rem] select-none opacity-20 pointer-events-none">
+      <div className="absolute top-10 left-8 sm:left-16 lg:left-24 watermark-text text-7xl sm:text-9xl md:text-[13rem] select-none pointer-events-none">
         Journal
       </div>
 

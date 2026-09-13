@@ -33,10 +33,10 @@ export default function FounderSection() {
   ];
 
   return (
-    <section id="founder" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-bg overflow-hidden border-b border-white/5">
+    <section id="founder" className="relative py-28 lg:py-32 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-bg overflow-hidden border-b border-white/5">
       {/* Background Watermark */}
-      <div className="absolute top-12 right-10 watermark-text text-8xl md:text-[14rem] select-none opacity-20 pointer-events-none">
-        Architect
+      <div className="absolute top-10 right-8 sm:right-16 watermark-text text-7xl sm:text-9xl md:text-[13rem] select-none pointer-events-none">
+        Atelier
       </div>
 
       <div className="relative max-w-7xl mx-auto z-10">

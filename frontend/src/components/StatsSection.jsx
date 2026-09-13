@@ -10,8 +10,13 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="relative py-24 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-surface border-t border-b border-white/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-28 lg:py-32 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-surface border-t border-b border-white/5 overflow-hidden">
+      {/* Background Watermark */}
+      <div className="absolute top-10 right-8 sm:right-16 watermark-text text-7xl sm:text-9xl md:text-[13rem] select-none pointer-events-none">
+        Legacy
+      </div>
+
+      <div className="relative max-w-7xl mx-auto z-10">
         {/* Giant textured metallic number matching the iconic go.arch design */}
         <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-12 mb-16 pb-16 border-b border-white/10">
           <div className="flex flex-col sm:flex-row items-baseline gap-6 text-center sm:text-left">

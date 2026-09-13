@@ -530,9 +530,9 @@ export default function ThreeStudioViewer() {
   }, [wireframeMode]);
 
   return (
-    <section id="3d-studio" className="relative py-28 px-4 sm:px-6 lg:px-12 bg-dark-surface border-t border-b border-white/5 overflow-hidden">
+    <section id="3d-studio" className="relative py-28 lg:py-32 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-surface border-t border-b border-white/5 overflow-hidden">
       {/* Background Watermark */}
-      <div className="absolute top-8 left-12 watermark-text text-8xl md:text-9xl opacity-30 select-none pointer-events-none">
+      <div className="absolute top-10 left-8 sm:left-16 lg:left-24 watermark-text text-7xl sm:text-9xl md:text-[13rem] select-none pointer-events-none">
         3D Studio
       </div>
 

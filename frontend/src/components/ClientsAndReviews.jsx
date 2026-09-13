@@ -55,10 +55,10 @@ export default function ClientsAndReviews() {
   };
 
   return (
-    <section id="clients" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-[#111215] overflow-hidden border-b border-white/5">
+    <section id="clients" className="relative py-28 lg:py-32 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-bg overflow-hidden border-b border-white/5">
       {/* Background Watermark */}
-      <div className="absolute top-8 left-1/4 watermark-text text-8xl md:text-[14rem] select-none opacity-20 pointer-events-none">
-        clients
+      <div className="absolute top-10 left-8 sm:left-16 lg:left-24 watermark-text text-7xl sm:text-9xl md:text-[13rem] select-none pointer-events-none">
+        Clients
       </div>
 
       <div className="relative max-w-7xl mx-auto z-10">

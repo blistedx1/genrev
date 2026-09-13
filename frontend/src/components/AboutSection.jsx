@@ -25,9 +25,9 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="relative py-28 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-[#111215] overflow-hidden border-b border-white/5">
+    <section id="about" className="relative py-28 lg:py-32 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-bg overflow-hidden border-b border-white/5">
       {/* Background Watermark */}
-      <div className="absolute top-12 left-20 watermark-text text-8xl md:text-[14rem] select-none opacity-20 pointer-events-none">
+      <div className="absolute top-10 left-8 sm:left-16 lg:left-24 watermark-text text-7xl sm:text-9xl md:text-[13rem] select-none pointer-events-none">
         About
       </div>
 
@@ -35,7 +35,7 @@ export default function AboutSection() {
         {/* Section Header */}
         <div className="flex items-center gap-3 mb-16">
           <span className="text-xs uppercase tracking-[0.35em] text-white font-mono-num font-semibold">
-            ABOUT <span className="text-[#C5A880]">GENREV INTERIO</span>
+            ABOUT <span className="text-gold">GENREV INTERIO</span>
           </span>
           <span className="w-16 h-[1px] bg-white/10"></span>
         </div>
