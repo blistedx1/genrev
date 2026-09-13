@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { AppProvider } from './context/AppContext';
@@ -13,15 +13,37 @@ import ProjectsAccordion from './components/ProjectsAccordion';
 import ProjectGrid from './components/ProjectGrid';
 import JournalSection from './components/JournalSection';
 import FounderSection from './components/FounderSection';
-import ThreeStudioViewer from './components/ThreeStudioViewer';
 import StatsSection from './components/StatsSection';
 import InstagramFeedSection from './components/InstagramFeedSection';
 import ClientsAndReviews from './components/ClientsAndReviews';
 import ContactSection from './components/ContactSection';
-import ProjectModal from './components/ProjectModal';
 import Footer from './components/Footer';
-import AdminPage from './pages/AdminPage';
 import AnimatedReveal from './components/AnimatedReveal';
+
+// Dynamic Lazy-Loaded Heavy Components for Bundle Splitting
+const ThreeStudioViewer = lazy(() => import('./components/ThreeStudioViewer'));
+const ProjectModal = lazy(() => import('./components/ProjectModal'));
+const AdminPage = lazy(() => import('./pages/AdminPage'));
+
+function StudioLoadingFallback() {
+  return (
+    <section className="relative py-28 lg:py-32 px-6 sm:px-12 lg:pl-36 lg:pr-16 bg-dark-surface border-t border-b border-white/5 flex items-center justify-center">
+      <div className="w-full max-w-7xl h-[580px] md:h-[640px] rounded-2xl bg-card-bg/60 border border-white/5 flex flex-col items-center justify-center shadow-2xl">
+        <div className="w-10 h-10 rounded-full border-2 border-transparent border-t-gold animate-spin mb-3"></div>
+        <span className="text-xs font-mono-num uppercase tracking-[0.25em] text-gold">Loading 3D Spatial Pavilion...</span>
+      </div>
+    </section>
+  );
+}
+
+function PageLoadingFallback() {
+  return (
+    <div className="min-h-screen bg-dark-bg flex flex-col items-center justify-center">
+      <div className="w-12 h-12 rounded-full border-2 border-transparent border-t-gold animate-spin mb-3"></div>
+      <span className="text-xs font-mono-num uppercase tracking-[0.25em] text-gold">Opening Secure Atelier Database...</span>
+    </div>
+  );
+}
 
 function MainLayout() {
   return (
@@ -97,7 +119,9 @@ function MainLayout() {
 
         {/* 9. Interactive 3D Architectural Studio */}
         <AnimatedReveal direction="up" delay={0.1}>
-          <ThreeStudioViewer />
+          <Suspense fallback={<StudioLoadingFallback />}>
+            <ThreeStudioViewer />
+          </Suspense>
         </AnimatedReveal>
 
         {/* 10. Stats & Milestone Section with textured giant number */}
@@ -125,7 +149,9 @@ function MainLayout() {
       <Footer />
 
       {/* Project Deep-Dive Modal */}
-      <ProjectModal />
+      <Suspense fallback={null}>
+        <ProjectModal />
+      </Suspense>
     </div>
   );
 }
@@ -148,7 +174,14 @@ function AnimatedRoutes() {
           <Route path="/" element={<MainLayout />} />
 
           {/* Dedicated Secret Admin Panel URL */}
-          <Route path="/admin" element={<AdminPage />} />
+          <Route 
+            path="/admin" 
+            element={
+              <Suspense fallback={<PageLoadingFallback />}>
+                <AdminPage />
+              </Suspense>
+            } 
+          />
 
           {/* Catch-all fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />
